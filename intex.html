@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Chemovik – Under Construction</title>
+  <style>
+    body {
+      margin: 0; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background-color: #556B2F;
+      font-family: sans-serif; color: #fff;
+      flex-direction: column;
+    }
+    .gear {
+      width: 100px; height: 100px;
+      margin-bottom: 1rem;
+      animation: spin 4s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    h1 { font-size: 2.5rem; margin: .5rem 0; text-transform: uppercase; }
+    p  { font-size: 1.1rem; opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <svg class="gear" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="10" fill="#fff"/>
+    <path fill="none" stroke="#fff" stroke-width="8" d="
+      M50 2 L50 20 M50 98 L50 80 M2 50 L20 50 M98 50 L80 50
+      M20 20 L30 30 M80 80 L70 70 M20 80 L30 70 M80 20 L70 30
+    "/>
+  </svg>
+  <h1>UNDER CONSTRUCTION</h1>
+  <p>Come back soon for something awesome!</p>
+</body>
+</html>
+
