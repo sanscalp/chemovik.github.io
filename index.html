@@ -1,101 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chemovik Periodic Table</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Chemovik – Under Construction</title>
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #556b2f; /* Olive green */
-      color: #fff;
-      text-align: center;
+      margin: 0; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background-color: #556B2F;
+      font-family: sans-serif; color: #fff;
+      flex-direction: column;
     }
-
-    h1 {
-      margin-top: 20px;
+    .gear {
+      width: 100px; height: 100px;
+      margin-bottom: 1rem;
+      animation: spin 4s linear infinite;
     }
-
-    .table {
-      display: grid;
-      grid-template-columns: repeat(18, 50px);
-      gap: 5px;
-      justify-content: center;
-      padding: 20px;
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
     }
-
-    .element {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .element:hover {
-      background: rgba(255, 255, 255, 0.25);
-    }
-
-    .tooltip {
-      position: fixed;
-      background: #333;
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: 6px;
-      display: none;
-      pointer-events: none;
-      font-size: 14px;
-    }
+    h1 { font-size: 2.5rem; margin: .5rem 0; text-transform: uppercase; }
+    p  { font-size: 1.1rem; opacity: 0.8; }
   </style>
 </head>
 <body>
-
-  <h1>🧪 Periodic Table Explorer - Chemovik</h1>
-  <div class="table" id="periodic-table"></div>
-  <div class="tooltip" id="tooltip"></div>
-
-  <script>
-    const elements = [
-      { symbol: "H", name: "Hydrogen", number: 1, position: 1 },
-      { symbol: "He", name: "Helium", number: 2, position: 18 },
-      { symbol: "Li", name: "Lithium", number: 3, position: 1 + 18 },
-      { symbol: "Be", name: "Beryllium", number: 4, position: 2 + 18 },
-      { symbol: "B", name: "Boron", number: 5, position: 13 + 18 },
-      { symbol: "C", name: "Carbon", number: 6, position: 14 + 18 },
-      { symbol: "N", name: "Nitrogen", number: 7, position: 15 + 18 },
-      { symbol: "O", name: "Oxygen", number: 8, position: 16 + 18 },
-      { symbol: "F", name: "Fluorine", number: 9, position: 17 + 18 },
-      { symbol: "Ne", name: "Neon", number: 10, position: 18 + 18 },
-      // Add more elements as you like...
-    ];
-
-    const table = document.getElementById("periodic-table");
-    const tooltip = document.getElementById("tooltip");
-
-    for (let i = 0; i < 18 * 7; i++) {
-      const cell = document.createElement("div");
-      cell.classList.add("element");
-      const el = elements.find(e => e.position === i);
-      if (el) {
-        cell.textContent = el.symbol;
-        cell.addEventListener("mouseenter", (e) => {
-          tooltip.style.display = "block";
-          tooltip.innerHTML = `<strong>${el.name}</strong><br>Symbol: ${el.symbol}<br>Atomic No: ${el.number}`;
-        });
-        cell.addEventListener("mousemove", (e) => {
-          tooltip.style.left = e.pageX + 10 + "px";
-          tooltip.style.top = e.pageY + 10 + "px";
-        });
-        cell.addEventListener("mouseleave", () => {
-          tooltip.style.display = "none";
-        });
-      } else {
-        cell.style.visibility = "hidden";
-      }
-      table.appendChild(cell);
-    }
-  </script>
-
+  <svg class="gear" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="10" fill="#fff"/>
+    <path fill="none" stroke="#fff" stroke-width="8" d="
+      M50 2 L50 20 M50 98 L50 80 M2 50 L20 50 M98 50 L80 50
+      M20 20 L30 30 M80 80 L70 70 M20 80 L30 70 M80 20 L70 30
+    "/>
+  </svg>
+  <h1>UNDER CONSTRUCTION</h1>
+  <p>Come back soon for something awesome!</p>
 </body>
 </html>
