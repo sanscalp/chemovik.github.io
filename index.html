@@ -1,778 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chemovik Periodic Table Explorer</title>
-<style>
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-color: #556b2f;
-  color: #333;
-}
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: #445c2e;
-  color: #fff;
-}
-.header h1 {
-  margin: 0;
-  font-size: 1.5em;
-}
-#search {
-  padding: 5px;
-  font-size: 1em;
-  border-radius: 4px;
-  border: 1px solid #333;
-}
-.periodic-table {
-  display: grid;
-  grid-template-columns: repeat(18, 1fr);
-  grid-auto-rows: 60px;
-  gap: 2px;
-  padding: 10px;
-}
-.element {
-  background-color: #fff;
-  border-radius: 4px;
-  position: relative;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  font-weight: bold;
-  overflow: hidden;
-}
-.element .atomic {
-  position: absolute;
-  top: 2px;
-  left: 4px;
-  font-size: 0.7em;
-}
-.element .symbol {
-  font-size: 1.2em;
-  line-height: 60px;
-}
-.element:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #ffeb3b;
-}
-.empty {
-  background: transparent;
-  cursor: default;
-}
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-.modal.show {
-  display: flex;
-}
-.modal-content {
-  background: #fff;
-  color: #000;
-  padding: 20px;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 500px;
-  max-height: 90%;
-  overflow-y: auto;
-  position: relative;
-}
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  cursor: pointer;
-}
-.modal img {
-  width: 100%;
-  height: auto;
-  margin: 10px 0;
-  border-radius: 4px;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chemovik Periodic Table</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #556b2f; /* Olive green */
+      color: #fff;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .table {
+      display: grid;
+      grid-template-columns: repeat(18, 50px);
+      gap: 5px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .element {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .element:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .tooltip {
+      position: fixed;
+      background: #333;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      display: none;
+      pointer-events: none;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-  <div class="header">
-    <h1>Chemovik Periodic Table</h1>
-    <input type="text" id="search" placeholder="Search elements by name or symbol" />
-  </div>
-  <div class="periodic-table">
-    <!-- Row 1 -->
-    <div class="element" data-symbol="H" data-name="Hydrogen" style="grid-column:1; grid-row:1;">
-      <div class="atomic">1</div><div class="symbol">H</div>
-    </div>
-    <div class="element empty" style="grid-column:2; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:3; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:4; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:5; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:6; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:7; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:8; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:9; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:10; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:11; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:12; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:13; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:14; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:15; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:16; grid-row:1;"></div>
-    <div class="element empty" style="grid-column:17; grid-row:1;"></div>
-    <div class="element" data-symbol="He" data-name="Helium" style="grid-column:18; grid-row:1;">
-      <div class="atomic">2</div><div class="symbol">He</div>
-    </div>
-    <!-- Row 2 -->
-    <div class="element" data-symbol="Li" data-name="Lithium" style="grid-column:1; grid-row:2;">
-      <div class="atomic">3</div><div class="symbol">Li</div>
-    </div>
-    <div class="element" data-symbol="Be" data-name="Beryllium" style="grid-column:2; grid-row:2;">
-      <div class="atomic">4</div><div class="symbol">Be</div>
-    </div>
-    <div class="element empty" style="grid-column:3; grid-row:2;"></div>
-    <div class="element empty" style="grid-column:4; grid-row:2;"></div>
-    <div class="element empty" style="grid-column:5; grid-row:2;"></div>
-    <div class="element empty" style="grid-column:6; grid-row:2;"></div>
-    <div class="element empty" style="grid-column:7; grid-row:2;"></div>
-    <div class="element empty" style="grid-column:8; grid-row:2;"></div>
-    <div class="element empty" style="grid-column:9; grid-row:2;"></div>
-    <div class="element empty" style="grid-column:10; grid-row:2;"></div>
-    <div class="element empty" style="grid-column:11; grid-row:2;"></div>
-    <div class="element empty" style="grid-column:12; grid-row:2;"></div>
-    <div class="element" data-symbol="B" data-name="Boron" style="grid-column:13; grid-row:2;">
-      <div class="atomic">5</div><div class="symbol">B</div>
-    </div>
-    <div class="element" data-symbol="C" data-name="Carbon" style="grid-column:14; grid-row:2;">
-      <div class="atomic">6</div><div class="symbol">C</div>
-    </div>
-    <div class="element" data-symbol="N" data-name="Nitrogen" style="grid-column:15; grid-row:2;">
-      <div class="atomic">7</div><div class="symbol">N</div>
-    </div>
-    <div class="element" data-symbol="O" data-name="Oxygen" style="grid-column:16; grid-row:2;">
-      <div class="atomic">8</div><div class="symbol">O</div>
-    </div>
-    <div class="element" data-symbol="F" data-name="Fluorine" style="grid-column:17; grid-row:2;">
-      <div class="atomic">9</div><div class="symbol">F</div>
-    </div>
-    <div class="element" data-symbol="Ne" data-name="Neon" style="grid-column:18; grid-row:2;">
-      <div class="atomic">10</div><div class="symbol">Ne</div>
-    </div>
-    <!-- Row 3 -->
-    <div class="element" data-symbol="Na" data-name="Sodium" style="grid-column:1; grid-row:3;">
-      <div class="atomic">11</div><div class="symbol">Na</div>
-    </div>
-    <div class="element" data-symbol="Mg" data-name="Magnesium" style="grid-column:2; grid-row:3;">
-      <div class="atomic">12</div><div class="symbol">Mg</div>
-    </div>
-    <div class="element empty" style="grid-column:3; grid-row:3;"></div>
-    <div class="element empty" style="grid-column:4; grid-row:3;"></div>
-    <div class="element empty" style="grid-column:5; grid-row:3;"></div>
-    <div class="element empty" style="grid-column:6; grid-row:3;"></div>
-    <div class="element empty" style="grid-column:7; grid-row:3;"></div>
-    <div class="element empty" style="grid-column:8; grid-row:3;"></div>
-    <div class="element empty" style="grid-column:9; grid-row:3;"></div>
-    <div class="element empty" style="grid-column:10; grid-row:3;"></div>
-    <div class="element empty" style="grid-column:11; grid-row:3;"></div>
-    <div class="element empty" style="grid-column:12; grid-row:3;"></div>
-    <div class="element" data-symbol="Al" data-name="Aluminum" style="grid-column:13; grid-row:3;">
-      <div class="atomic">13</div><div class="symbol">Al</div>
-    </div>
-    <div class="element" data-symbol="Si" data-name="Silicon" style="grid-column:14; grid-row:3;">
-      <div class="atomic">14</div><div class="symbol">Si</div>
-    </div>
-    <div class="element" data-symbol="P" data-name="Phosphorus" style="grid-column:15; grid-row:3;">
-      <div class="atomic">15</div><div class="symbol">P</div>
-    </div>
-    <div class="element" data-symbol="S" data-name="Sulfur" style="grid-column:16; grid-row:3;">
-      <div class="atomic">16</div><div class="symbol">S</div>
-    </div>
-    <div class="element" data-symbol="Cl" data-name="Chlorine" style="grid-column:17; grid-row:3;">
-      <div class="atomic">17</div><div class="symbol">Cl</div>
-    </div>
-    <div class="element" data-symbol="Ar" data-name="Argon" style="grid-column:18; grid-row:3;">
-      <div class="atomic">18</div><div class="symbol">Ar</div>
-    </div>
-    <!-- Row 4 -->
-    <div class="element" data-symbol="K" data-name="Potassium" style="grid-column:1; grid-row:4;">
-      <div class="atomic">19</div><div class="symbol">K</div>
-    </div>
-    <div class="element" data-symbol="Ca" data-name="Calcium" style="grid-column:2; grid-row:4;">
-      <div class="atomic">20</div><div class="symbol">Ca</div>
-    </div>
-    <div class="element" data-symbol="Sc" data-name="Scandium" style="grid-column:3; grid-row:4;">
-      <div class="atomic">21</div><div class="symbol">Sc</div>
-    </div>
-    <div class="element" data-symbol="Ti" data-name="Titanium" style="grid-column:4; grid-row:4;">
-      <div class="atomic">22</div><div class="symbol">Ti</div>
-    </div>
-    <div class="element" data-symbol="V" data-name="Vanadium" style="grid-column:5; grid-row:4;">
-      <div class="atomic">23</div><div class="symbol">V</div>
-    </div>
-    <div class="element" data-symbol="Cr" data-name="Chromium" style="grid-column:6; grid-row:4;">
-      <div class="atomic">24</div><div class="symbol">Cr</div>
-    </div>
-    <div class="element" data-symbol="Mn" data-name="Manganese" style="grid-column:7; grid-row:4;">
-      <div class="atomic">25</div><div class="symbol">Mn</div>
-    </div>
-    <div class="element" data-symbol="Fe" data-name="Iron" style="grid-column:8; grid-row:4;">
-      <div class="atomic">26</div><div class="symbol">Fe</div>
-    </div>
-    <div class="element" data-symbol="Co" data-name="Cobalt" style="grid-column:9; grid-row:4;">
-      <div class="atomic">27</div><div class="symbol">Co</div>
-    </div>
-    <div class="element" data-symbol="Ni" data-name="Nickel" style="grid-column:10; grid-row:4;">
-      <div class="atomic">28</div><div class="symbol">Ni</div>
-    </div>
-    <div class="element" data-symbol="Cu" data-name="Copper" style="grid-column:11; grid-row:4;">
-      <div class="atomic">29</div><div class="symbol">Cu</div>
-    </div>
-    <div class="element" data-symbol="Zn" data-name="Zinc" style="grid-column:12; grid-row:4;">
-      <div class="atomic">30</div><div class="symbol">Zn</div>
-    </div>
-    <div class="element" data-symbol="Ga" data-name="Gallium" style="grid-column:13; grid-row:4;">
-      <div class="atomic">31</div><div class="symbol">Ga</div>
-    </div>
-    <div class="element" data-symbol="Ge" data-name="Germanium" style="grid-column:14; grid-row:4;">
-      <div class="atomic">32</div><div class="symbol">Ge</div>
-    </div>
-    <div class="element" data-symbol="As" data-name="Arsenic" style="grid-column:15; grid-row:4;">
-      <div class="atomic">33</div><div class="symbol">As</div>
-    </div>
-    <div class="element" data-symbol="Se" data-name="Selenium" style="grid-column:16; grid-row:4;">
-      <div class="atomic">34</div><div class="symbol">Se</div>
-    </div>
-    <div class="element" data-symbol="Br" data-name="Bromine" style="grid-column:17; grid-row:4;">
-      <div class="atomic">35</div><div class="symbol">Br</div>
-    </div>
-    <div class="element" data-symbol="Kr" data-name="Krypton" style="grid-column:18; grid-row:4;">
-      <div class="atomic">36</div><div class="symbol">Kr</div>
-    </div>
-    <!-- Row 5 -->
-    <div class="element" data-symbol="Rb" data-name="Rubidium" style="grid-column:1; grid-row:5;">
-      <div class="atomic">37</div><div class="symbol">Rb</div>
-    </div>
-    <div class="element" data-symbol="Sr" data-name="Strontium" style="grid-column:2; grid-row:5;">
-      <div class="atomic">38</div><div class="symbol">Sr</div>
-    </div>
-    <div class="element" data-symbol="Y" data-name="Yttrium" style="grid-column:3; grid-row:5;">
-      <div class="atomic">39</div><div class="symbol">Y</div>
-    </div>
-    <div class="element" data-symbol="Zr" data-name="Zirconium" style="grid-column:4; grid-row:5;">
-      <div class="atomic">40</div><div class="symbol">Zr</div>
-    </div>
-    <div class="element" data-symbol="Nb" data-name="Niobium" style="grid-column:5; grid-row:5;">
-      <div class="atomic">41</div><div class="symbol">Nb</div>
-    </div>
-    <div class="element" data-symbol="Mo" data-name="Molybdenum" style="grid-column:6; grid-row:5;">
-      <div class="atomic">42</div><div class="symbol">Mo</div>
-    </div>
-    <div class="element" data-symbol="Tc" data-name="Technetium" style="grid-column:7; grid-row:5;">
-      <div class="atomic">43</div><div class="symbol">Tc</div>
-    </div>
-    <div class="element" data-symbol="Ru" data-name="Ruthenium" style="grid-column:8; grid-row:5;">
-      <div class="atomic">44</div><div class="symbol">Ru</div>
-    </div>
-    <div class="element" data-symbol="Rh" data-name="Rhodium" style="grid-column:9; grid-row:5;">
-      <div class="atomic">45</div><div class="symbol">Rh</div>
-    </div>
-    <div class="element" data-symbol="Pd" data-name="Palladium" style="grid-column:10; grid-row:5;">
-      <div class="atomic">46</div><div class="symbol">Pd</div>
-    </div>
-    <div class="element" data-symbol="Ag" data-name="Silver" style="grid-column:11; grid-row:5;">
-      <div class="atomic">47</div><div class="symbol">Ag</div>
-    </div>
-    <div class="element" data-symbol="Cd" data-name="Cadmium" style="grid-column:12; grid-row:5;">
-      <div class="atomic">48</div><div class="symbol">Cd</div>
-    </div>
-    <div class="element" data-symbol="In" data-name="Indium" style="grid-column:13; grid-row:5;">
-      <div class="atomic">49</div><div class="symbol">In</div>
-    </div>
-    <div class="element" data-symbol="Sn" data-name="Tin" style="grid-column:14; grid-row:5;">
-      <div class="atomic">50</div><div class="symbol">Sn</div>
-    </div>
-    <div class="element" data-symbol="Sb" data-name="Antimony" style="grid-column:15; grid-row:5;">
-      <div class="atomic">51</div><div class="symbol">Sb</div>
-    </div>
-    <div class="element" data-symbol="Te" data-name="Tellurium" style="grid-column:16; grid-row:5;">
-      <div class="atomic">52</div><div class="symbol">Te</div>
-    </div>
-    <div class="element" data-symbol="I" data-name="Iodine" style="grid-column:17; grid-row:5;">
-      <div class="atomic">53</div><div class="symbol">I</div>
-    </div>
-    <div class="element" data-symbol="Xe" data-name="Xenon" style="grid-column:18; grid-row:5;">
-      <div class="atomic">54</div><div class="symbol">Xe</div>
-    </div>
-    <!-- Row 6 -->
-    <div class="element" data-symbol="Cs" data-name="Cesium" style="grid-column:1; grid-row:6;">
-      <div class="atomic">55</div><div class="symbol">Cs</div>
-    </div>
-    <div class="element" data-symbol="Ba" data-name="Barium" style="grid-column:2; grid-row:6;">
-      <div class="atomic">56</div><div class="symbol">Ba</div>
-    </div>
-    <div class="element" data-symbol="La" data-name="Lanthanum" style="grid-column:3; grid-row:6;">
-      <div class="atomic">57</div><div class="symbol">La</div>
-    </div>
-    <div class="element" data-symbol="Hf" data-name="Hafnium" style="grid-column:4; grid-row:6;">
-      <div class="atomic">72</div><div class="symbol">Hf</div>
-    </div>
-    <div class="element" data-symbol="Ta" data-name="Tantalum" style="grid-column:5; grid-row:6;">
-      <div class="atomic">73</div><div class="symbol">Ta</div>
-    </div>
-    <div class="element" data-symbol="W" data-name="Tungsten" style="grid-column:6; grid-row:6;">
-      <div class="atomic">74</div><div class="symbol">W</div>
-    </div>
-    <div class="element" data-symbol="Re" data-name="Rhenium" style="grid-column:7; grid-row:6;">
-      <div class="atomic">75</div><div class="symbol">Re</div>
-    </div>
-    <div class="element" data-symbol="Os" data-name="Osmium" style="grid-column:8; grid-row:6;">
-      <div class="atomic">76</div><div class="symbol">Os</div>
-    </div>
-    <div class="element" data-symbol="Ir" data-name="Iridium" style="grid-column:9; grid-row:6;">
-      <div class="atomic">77</div><div class="symbol">Ir</div>
-    </div>
-    <div class="element" data-symbol="Pt" data-name="Platinum" style="grid-column:10; grid-row:6;">
-      <div class="atomic">78</div><div class="symbol">Pt</div>
-    </div>
-    <div class="element" data-symbol="Au" data-name="Gold" style="grid-column:11; grid-row:6;">
-      <div class="atomic">79</div><div class="symbol">Au</div>
-    </div>
-    <div class="element" data-symbol="Hg" data-name="Mercury" style="grid-column:12; grid-row:6;">
-      <div class="atomic">80</div><div class="symbol">Hg</div>
-    </div>
-    <div class="element" data-symbol="Tl" data-name="Thallium" style="grid-column:13; grid-row:6;">
-      <div class="atomic">81</div><div class="symbol">Tl</div>
-    </div>
-    <div class="element" data-symbol="Pb" data-name="Lead" style="grid-column:14; grid-row:6;">
-      <div class="atomic">82</div><div class="symbol">Pb</div>
-    </div>
-    <div class="element" data-symbol="Bi" data-name="Bismuth" style="grid-column:15; grid-row:6;">
-      <div class="atomic">83</div><div class="symbol">Bi</div>
-    </div>
-    <div class="element" data-symbol="Po" data-name="Polonium" style="grid-column:16; grid-row:6;">
-      <div class="atomic">84</div><div class="symbol">Po</div>
-    </div>
-    <div class="element" data-symbol="At" data-name="Astatine" style="grid-column:17; grid-row:6;">
-      <div class="atomic">85</div><div class="symbol">At</div>
-    </div>
-    <div class="element" data-symbol="Rn" data-name="Radon" style="grid-column:18; grid-row:6;">
-      <div class="atomic">86</div><div class="symbol">Rn</div>
-    </div>
-    <!-- Row 7 -->
-    <div class="element" data-symbol="Fr" data-name="Francium" style="grid-column:1; grid-row:7;">
-      <div class="atomic">87</div><div class="symbol">Fr</div>
-    </div>
-    <div class="element" data-symbol="Ra" data-name="Radium" style="grid-column:2; grid-row:7;">
-      <div class="atomic">88</div><div class="symbol">Ra</div>
-    </div>
-    <div class="element" data-symbol="Ac" data-name="Actinium" style="grid-column:3; grid-row:7;">
-      <div class="atomic">89</div><div class="symbol">Ac</div>
-    </div>
-    <div class="element" data-symbol="Rf" data-name="Rutherfordium" style="grid-column:4; grid-row:7;">
-      <div class="atomic">104</div><div class="symbol">Rf</div>
-    </div>
-    <div class="element" data-symbol="Db" data-name="Dubnium" style="grid-column:5; grid-row:7;">
-      <div class="atomic">105</div><div class="symbol">Db</div>
-    </div>
-    <div class="element" data-symbol="Sg" data-name="Seaborgium" style="grid-column:6; grid-row:7;">
-      <div class="atomic">106</div><div class="symbol">Sg</div>
-    </div>
-    <div class="element" data-symbol="Bh" data-name="Bohrium" style="grid-column:7; grid-row:7;">
-      <div class="atomic">107</div><div class="symbol">Bh</div>
-    </div>
-    <div class="element" data-symbol="Hs" data-name="Hassium" style="grid-column:8; grid-row:7;">
-      <div class="atomic">108</div><div class="symbol">Hs</div>
-    </div>
-    <div class="element" data-symbol="Mt" data-name="Meitnerium" style="grid-column:9; grid-row:7;">
-      <div class="atomic">109</div><div class="symbol">Mt</div>
-    </div>
-    <div class="element" data-symbol="Ds" data-name="Darmstadtium" style="grid-column:10; grid-row:7;">
-      <div class="atomic">110</div><div class="symbol">Ds</div>
-    </div>
-    <div class="element" data-symbol="Rg" data-name="Roentgenium" style="grid-column:11; grid-row:7;">
-      <div class="atomic">111</div><div class="symbol">Rg</div>
-    </div>
-    <div class="element" data-symbol="Cn" data-name="Copernicium" style="grid-column:12; grid-row:7;">
-      <div class="atomic">112</div><div class="symbol">Cn</div>
-    </div>
-    <div class="element" data-symbol="Nh" data-name="Nihonium" style="grid-column:13; grid-row:7;">
-      <div class="atomic">113</div><div class="symbol">Nh</div>
-    </div>
-    <div class="element" data-symbol="Fl" data-name="Flerovium" style="grid-column:14; grid-row:7;">
-      <div class="atomic">114</div><div class="symbol">Fl</div>
-    </div>
-    <div class="element" data-symbol="Mc" data-name="Moscovium" style="grid-column:15; grid-row:7;">
-      <div class="atomic">115</div><div class="symbol">Mc</div>
-    </div>
-    <div class="element" data-symbol="Lv" data-name="Livermorium" style="grid-column:16; grid-row:7;">
-      <div class="atomic">116</div><div class="symbol">Lv</div>
-    </div>
-    <div class="element" data-symbol="Ts" data-name="Tennessine" style="grid-column:17; grid-row:7;">
-      <div class="atomic">117</div><div class="symbol">Ts</div>
-    </div>
-    <div class="element" data-symbol="Og" data-name="Oganesson" style="grid-column:18; grid-row:7;">
-      <div class="atomic">118</div><div class="symbol">Og</div>
-    </div>
-    <!-- Lanthanides (row 8, columns 4-17) -->
-    <div class="element" data-symbol="Ce" data-name="Cerium" style="grid-column:4; grid-row:8;">
-      <div class="atomic">58</div><div class="symbol">Ce</div>
-    </div>
-    <div class="element" data-symbol="Pr" data-name="Praseodymium" style="grid-column:5; grid-row:8;">
-      <div class="atomic">59</div><div class="symbol">Pr</div>
-    </div>
-    <div class="element" data-symbol="Nd" data-name="Neodymium" style="grid-column:6; grid-row:8;">
-      <div class="atomic">60</div><div class="symbol">Nd</div>
-    </div>
-    <div class="element" data-symbol="Pm" data-name="Promethium" style="grid-column:7; grid-row:8;">
-      <div class="atomic">61</div><div class="symbol">Pm</div>
-    </div>
-    <div class="element" data-symbol="Sm" data-name="Samarium" style="grid-column:8; grid-row:8;">
-      <div class="atomic">62</div><div class="symbol">Sm</div>
-    </div>
-    <div class="element" data-symbol="Eu" data-name="Europium" style="grid-column:9; grid-row:8;">
-      <div class="atomic">63</div><div class="symbol">Eu</div>
-    </div>
-    <div class="element" data-symbol="Gd" data-name="Gadolinium" style="grid-column:10; grid-row:8;">
-      <div class="atomic">64</div><div class="symbol">Gd</div>
-    </div>
-    <div class="element" data-symbol="Tb" data-name="Terbium" style="grid-column:11; grid-row:8;">
-      <div class="atomic">65</div><div class="symbol">Tb</div>
-    </div>
-    <div class="element" data-symbol="Dy" data-name="Dysprosium" style="grid-column:12; grid-row:8;">
-      <div class="atomic">66</div><div class="symbol">Dy</div>
-    </div>
-    <div class="element" data-symbol="Ho" data-name="Holmium" style="grid-column:13; grid-row:8;">
-      <div class="atomic">67</div><div class="symbol">Ho</div>
-    </div>
-    <div class="element" data-symbol="Er" data-name="Erbium" style="grid-column:14; grid-row:8;">
-      <div class="atomic">68</div><div class="symbol">Er</div>
-    </div>
-    <div class="element" data-symbol="Tm" data-name="Thulium" style="grid-column:15; grid-row:8;">
-      <div class="atomic">69</div><div class="symbol">Tm</div>
-    </div>
-    <div class="element" data-symbol="Yb" data-name="Ytterbium" style="grid-column:16; grid-row:8;">
-      <div class="atomic">70</div><div class="symbol">Yb</div>
-    </div>
-    <div class="element" data-symbol="Lu" data-name="Lutetium" style="grid-column:17; grid-row:8;">
-      <div class="atomic">71</div><div class="symbol">Lu</div>
-    </div>
-    <!-- Actinides (row 9, columns 4-17) -->
-    <div class="element" data-symbol="Th" data-name="Thorium" style="grid-column:4; grid-row:9;">
-      <div class="atomic">90</div><div class="symbol">Th</div>
-    </div>
-    <div class="element" data-symbol="Pa" data-name="Protactinium" style="grid-column:5; grid-row:9;">
-      <div class="atomic">91</div><div class="symbol">Pa</div>
-    </div>
-    <div class="element" data-symbol="U" data-name="Uranium" style="grid-column:6; grid-row:9;">
-      <div class="atomic">92</div><div class="symbol">U</div>
-    </div>
-    <div class="element" data-symbol="Np" data-name="Neptunium" style="grid-column:7; grid-row:9;">
-      <div class="atomic">93</div><div class="symbol">Np</div>
-    </div>
-    <div class="element" data-symbol="Pu" data-name="Plutonium" style="grid-column:8; grid-row:9;">
-      <div class="atomic">94</div><div class="symbol">Pu</div>
-    </div>
-    <div class="element" data-symbol="Am" data-name="Americium" style="grid-column:9; grid-row:9;">
-      <div class="atomic">95</div><div class="symbol">Am</div>
-    </div>
-    <div class="element" data-symbol="Cm" data-name="Curium" style="grid-column:10; grid-row:9;">
-      <div class="atomic">96</div><div class="symbol">Cm</div>
-    </div>
-    <div class="element" data-symbol="Bk" data-name="Berkelium" style="grid-column:11; grid-row:9;">
-      <div class="atomic">97</div><div class="symbol">Bk</div>
-    </div>
-    <div class="element" data-symbol="Cf" data-name="Californium" style="grid-column:12; grid-row:9;">
-      <div class="atomic">98</div><div class="symbol">Cf</div>
-    </div>
-    <div class="element" data-symbol="Es" data-name="Einsteinium" style="grid-column:13; grid-row:9;">
-      <div class="atomic">99</div><div class="symbol">Es</div>
-    </div>
-    <div class="element" data-symbol="Fm" data-name="Fermium" style="grid-column:14; grid-row:9;">
-      <div class="atomic">100</div><div class="symbol">Fm</div>
-    </div>
-    <div class="element" data-symbol="Md" data-name="Mendelevium" style="grid-column:15; grid-row:9;">
-      <div class="atomic">101</div><div class="symbol">Md</div>
-    </div>
-    <div class="element" data-symbol="No" data-name="Nobelium" style="grid-column:16; grid-row:9;">
-      <div class="atomic">102</div><div class="symbol">No</div>
-    </div>
-    <div class="element" data-symbol="Lr" data-name="Lawrencium" style="grid-column:17; grid-row:9;">
-      <div class="atomic">103</div><div class="symbol">Lr</div>
-    </div>
-  </div>
 
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div id="modal-body"></div>
-    </div>
-  </div>
+  <h1>🧪 Periodic Table Explorer - Chemovik</h1>
+  <div class="table" id="periodic-table"></div>
+  <div class="tooltip" id="tooltip"></div>
 
   <script>
-  const elementData = {
-    H: {
-      name: "Hydrogen",
-      atomic: 1,
-      weight: 1.008,
-      melting: "-259°C",
-      boiling: "-253°C",
-      configuration: "1s¹",
-      uses: "Fuel (rockets, hydrogen fuel cells), H₂O component",
-      fact: "Most abundant element in the universe, fuels the Sun and stars."
-    },
-    He: {
-      name: "Helium",
-      atomic: 2,
-      weight: 4.0026,
-      melting: "-272°C (at 1 atm)",
-      boiling: "-269°C",
-      configuration: "1s²",
-      uses: "Coolant (cryogenics, MRI machines), balloons, breathing mixtures",
-      fact: "Lightest noble gas, second most abundant element in the universe. Discovered in the Sun's spectrum.",
-      image: "https://cdn.pixabay.com/photo/2016/11/29/11/46/balloons-1869269_1280.jpg"
-    },
-    Li: {
-      name: "Lithium",
-      atomic: 3,
-      weight: 6.94,
-      melting: "180.5°C",
-      boiling: "1347°C",
-      configuration: "[He] 2s¹",
-      uses: "Rechargeable batteries, ceramics, medicine (bipolar disorder)",
-      fact: "Lightest metal, used in batteries and some glass/ceramics.",
-      image: "https://cdn.pixabay.com/photo/2020/03/22/16/18/battery-4957675_1280.jpg"
-    },
-    C: {
-      name: "Carbon",
-      atomic: 6,
-      weight: 12.011,
-      melting: "3550°C (sublimes)",
-      boiling: "3550°C (sublimes)",
-      configuration: "[He] 2s² 2p²",
-      uses: "Basis of organic chemistry, diamond/graphite, fuels (coal), carbon fiber",
-      fact: "Exists in many forms (diamond, graphite, graphene). Essential for all known life."
-    },
-    N: {
-      name: "Nitrogen",
-      atomic: 7,
-      weight: 14.007,
-      melting: "-210°C",
-      boiling: "-196°C",
-      configuration: "[He] 2s² 2p³",
-      uses: "Fertilizers (ammonia), industrial (cooling, electronics), explosive (TNT)",
-      fact: "Makes up 78% of Earth’s atmosphere; inert gas at room temp."
-    },
-    O: {
-      name: "Oxygen",
-      atomic: 8,
-      weight: 15.999,
-      melting: "-218.8°C",
-      boiling: "-183.0°C",
-      configuration: "[He] 2s² 2p⁴",
-      uses: "Respiration (organisms, combustion), steelmaking, water component (H₂O)",
-      fact: "Essential for life; 21% of atmosphere. Discovered by Priestley and Scheele.",
-      image: "https://cdn.pixabay.com/photo/2020/01/02/16/39/water-4736282_640.jpg"
-    },
-    Ne: {
-      name: "Neon",
-      atomic: 10,
-      weight: 20.180,
-      melting: "-248.6°C",
-      boiling: "-246.1°C",
-      configuration: "[He] 2s² 2p⁶",
-      uses: "Neon signs (red-orange glow), gas lasers, cryogenics",
-      fact: "Produces a distinct red-orange light in vacuum tubes and neon lamps.",
-      image: "https://cdn.pixabay.com/photo/2011/03/21/11/28/neon-sign-5694_640.jpg"
-    },
-    Na: {
-      name: "Sodium",
-      atomic: 11,
-      weight: 22.990,
-      melting: "97.8°C",
-      boiling: "883°C",
-      configuration: "[Ne] 3s¹",
-      uses: "Table salt (NaCl), streetlights (bright yellow flame), industrial NaOH",
-      fact: "Reacts violently with water to form sodium hydroxide (NaOH) and H₂."
-    },
-    Mg: {
-      name: "Magnesium",
-      atomic: 12,
-      weight: 24.305,
-      melting: "650°C",
-      boiling: "1090°C",
-      configuration: "[Ne] 3s²",
-      uses: "Lightweight alloys, fireworks (bright white flame), medicine (antacids)",
-      fact: "Burns with a bright white light; used in flares and fireworks."
-    },
-    Al: {
-      name: "Aluminum",
-      atomic: 13,
-      weight: 26.982,
-      melting: "660°C",
-      boiling: "2519°C",
-      configuration: "[Ne] 3s² 3p¹",
-      uses: "Foil, cans, aircraft parts, wiring",
-      fact: "Most abundant metal in Earth's crust; forms a protective oxide layer."
-    },
-    Si: {
-      name: "Silicon",
-      atomic: 14,
-      weight: 28.085,
-      melting: "1414°C",
-      boiling: "3265°C",
-      configuration: "[Ne] 3s² 3p²",
-      uses: "Semiconductors (electronics), glass, concrete (silica)",
-      fact: "Key element in electronics; second most abundant element in Earth's crust."
-    },
-    P: {
-      name: "Phosphorus",
-      atomic: 15,
-      weight: 30.974,
-      melting: "44°C (white P)",
-      boiling: "280°C",
-      configuration: "[Ne] 3s² 3p³",
-      uses: "Fertilizers, matches, chemicals",
-      fact: "White phosphorus glows in the dark and ignites in air."
-    },
-    S: {
-      name: "Sulfur",
-      atomic: 16,
-      weight: 32.06,
-      melting: "115°C",
-      boiling: "444°C",
-      configuration: "[Ne] 3s² 3p⁴",
-      uses: "Fertilizers (sulfuric acid), gunpowder, rubber vulcanization",
-      fact: "Yellow solid; used historically in medicine and alchemy."
-    },
-    Cl: {
-      name: "Chlorine",
-      atomic: 17,
-      weight: 35.45,
-      melting: "-101.5°C",
-      boiling: "-34.0°C",
-      configuration: "[Ne] 3s² 3p⁵",
-      uses: "Water disinfection, bleach, PVC plastics",
-      fact: "Toxic greenish gas; was used as a chemical weapon in WWI."
-    },
-    K: {
-      name: "Potassium",
-      atomic: 19,
-      weight: 39.098,
-      melting: "63.5°C",
-      boiling: "759°C",
-      configuration: "[Ar] 4s¹",
-      uses: "Fertilizers (potash), salt substitutes, vital for nerve function",
-      fact: "Reacts violently with water; bananas are rich in K⁺."
-    },
-    Ca: {
-      name: "Calcium",
-      atomic: 20,
-      weight: 40.078,
-      melting: "842°C",
-      boiling: "1484°C",
-      configuration: "[Ar] 4s²",
-      uses: "Bones and teeth (hydroxyapatite), cement, lime (CaO)",
-      fact: "Makes bones strong; abundant in milk and minerals."
-    },
-    Fe: {
-      name: "Iron",
-      atomic: 26,
-      weight: 55.845,
-      melting: "1538°C",
-      boiling: "2862°C",
-      configuration: "[Ar] 3d⁶ 4s²",
-      uses: "Steel (construction, tools), magnets",
-      fact: "Most used metal; rusts (forms iron oxide) in moist air."
-    },
-    Cu: {
-      name: "Copper",
-      atomic: 29,
-      weight: 63.546,
-      melting: "1085°C",
-      boiling: "2562°C",
-      configuration: "[Ar] 3d¹⁰ 4s¹",
-      uses: "Electrical wiring, plumbing, coins",
-      fact: "Excellent conductor of electricity; can occur in native form (pure)."
-    },
-    Ag: {
-      name: "Silver",
-      atomic: 47,
-      weight: 107.8682,
-      melting: "961.8°C",
-      boiling: "2162°C",
-      configuration: "[Kr] 4d¹⁰ 5s¹",
-      uses: "Jewelry, coins, electronics, photography (halides)",
-      fact: "Highest electrical and thermal conductivity of any metal; tarnishes to Ag₂S.",
-      image: "https://cdn.pixabay.com/photo/2015/04/01/14/57/silver-702537_1280.jpg"
-    },
-    Au: {
-      name: "Gold",
-      atomic: 79,
-      weight: 196.9665,
-      melting: "1064°C",
-      boiling: "2856°C",
-      configuration: "[Xe] 4f¹⁴ 5d¹⁰ 6s¹",
-      uses: "Jewelry, electronics, currency, dentistry",
-      fact: "Highly nonreactive; only metal that is naturally golden in color.",
-      image: "https://cdn.pixabay.com/photo/2014/03/25/02/42/gold-295936_640.jpg"
-    }
-  };
+    const elements = [
+      { symbol: "H", name: "Hydrogen", number: 1, position: 1 },
+      { symbol: "He", name: "Helium", number: 2, position: 18 },
+      { symbol: "Li", name: "Lithium", number: 3, position: 1 + 18 },
+      { symbol: "Be", name: "Beryllium", number: 4, position: 2 + 18 },
+      { symbol: "B", name: "Boron", number: 5, position: 13 + 18 },
+      { symbol: "C", name: "Carbon", number: 6, position: 14 + 18 },
+      { symbol: "N", name: "Nitrogen", number: 7, position: 15 + 18 },
+      { symbol: "O", name: "Oxygen", number: 8, position: 16 + 18 },
+      { symbol: "F", name: "Fluorine", number: 9, position: 17 + 18 },
+      { symbol: "Ne", name: "Neon", number: 10, position: 18 + 18 },
+      // Add more elements as you like...
+    ];
 
-  document.querySelectorAll('.element').forEach(el => {
-    el.addEventListener('click', () => {
-      const sym = el.getAttribute('data-symbol');
-      if (!elementData[sym]) return;
-      const data = elementData[sym];
-      const modalBody = document.getElementById('modal-body');
-      let html = `<h2>${data.name} (${sym})</h2>`;
-      html += `<p><strong>Atomic Number:</strong> ${data.atomic}</p>`;
-      html += `<p><strong>Atomic Weight:</strong> ${data.weight}</p>`;
-      html += `<p><strong>Melting Point:</strong> ${data.melting}</p>`;
-      html += `<p><strong>Boiling Point:</strong> ${data.boiling}</p>`;
-      html += `<p><strong>Electron Config:</strong> ${data.configuration}</p>`;
-      html += `<p><strong>Common Uses:</strong> ${data.uses}</p>`;
-      html += `<p><em>${data.fact}</em></p>`;
-      if (data.image) {
-        html += `<img src="${data.image}" alt="${data.name}">`;
-      }
-      modalBody.innerHTML = html;
-      document.getElementById('modal').classList.add('show');
-    });
-  });
+    const table = document.getElementById("periodic-table");
+    const tooltip = document.getElementById("tooltip");
 
-  document.querySelector('.close').onclick = function() {
-    document.getElementById('modal').classList.remove('show');
-  };
-  window.onclick = function(e) {
-    if (e.target == document.getElementById('modal')) {
-      document.getElementById('modal').classList.remove('show');
-    }
-  };
-  document.getElementById('search').addEventListener('input', function() {
-    const query = this.value.toLowerCase();
-    document.querySelectorAll('.element').forEach(el => {
-      if(el.classList.contains('empty')) return;
-      const name = el.getAttribute('data-name').toLowerCase();
-      const sym = el.getAttribute('data-symbol').toLowerCase();
-      if(name.includes(query) || sym.includes(query)) {
-        el.style.display = 'block';
+    for (let i = 0; i < 18 * 7; i++) {
+      const cell = document.createElement("div");
+      cell.classList.add("element");
+      const el = elements.find(e => e.position === i);
+      if (el) {
+        cell.textContent = el.symbol;
+        cell.addEventListener("mouseenter", (e) => {
+          tooltip.style.display = "block";
+          tooltip.innerHTML = `<strong>${el.name}</strong><br>Symbol: ${el.symbol}<br>Atomic No: ${el.number}`;
+        });
+        cell.addEventListener("mousemove", (e) => {
+          tooltip.style.left = e.pageX + 10 + "px";
+          tooltip.style.top = e.pageY + 10 + "px";
+        });
+        cell.addEventListener("mouseleave", () => {
+          tooltip.style.display = "none";
+        });
       } else {
-        el.style.display = 'none';
+        cell.style.visibility = "hidden";
       }
-    });
-  });
+      table.appendChild(cell);
+    }
   </script>
+
 </body>
 </html>
