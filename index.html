@@ -1,610 +1,1342 @@
-<!DOCTYPE html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content=
-        "width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='style.css'>
-    <title>Periodic table using HTML and CSS</title>
-</head>
-
-<body>
-    <h1 id="page-title">
-        GeeksforGeeks Periodic Table with HTML and CSS
-    </h1>
-    
-    <div class='p-Table' aria-labelledby='page-title'>
-        <div tabindex='0' class='ele ele-1 d-nonmetal gas'>
-            <div class='ele-name' title='Hydrogen'>
-                H
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-2 n-gas gas'>
-            <div class='ele-name' title='Helium'>
-                He
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-3 al-metal'>
-            <div class='ele-name' title='Lithium'>
-                Li
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-4 alearth-metal'>
-            <div class='ele-name' title='Beryllium'>
-                Be
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-5 metalloid'>
-            <div class='ele-name' title='Boron'>
-                B
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-6 patomic-nonmetal'>
-            <div class='ele-name' title='Carbon'>
-                C
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-7 d-nonmetal gas'>
-            <div class='ele-name' title='Nitrogen'>
-                N
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-8 d-nonmetal gas'>
-            <div class='ele-name' title='Oxygen'>
-                O
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-9 d-nonmetal gas'>
-            <div class='ele-name' title='Fluorine'>
-                F
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-10 n-gas gas'>
-            <div class='ele-name' title='Neon'>
-                Ne
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-11 al-metal'>
-            <div class='ele-name' title='Sodium'>
-                Na
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-12 alearth-metal'>
-            <div class='ele-name' title='Magnesium'>
-                Mg
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-13 pTransition-metal'>
-            <div class='ele-name' title='Aluminium'>
-                Al
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-14 metalloid'>
-            <div class='ele-name' title='Silicon'>
-                Si
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-15 patomic-nonmetal'>
-            <div class='ele-name' title='Phosphorus'>
-                P
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-16 patomic-nonmetal'>
-            <div class='ele-name' title='Sulfur'>
-                S
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-17 d-nonmetal gas'>
-            <div class='ele-name' title='Chlorine'>
-                Cl
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-18 n-gas gas'>
-            <div class='ele-name' title='Argon'>
-                Ar
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-19 al-metal'>
-            <div class='ele-name' title='Potassium'>
-                K
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-20 alearth-metal'>
-            <div class='ele-name' title='Calcium'>
-                Ca
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-21 trans'>
-            <div class='ele-name' title='Scandium'>
-                Sc
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-22 trans'>
-            <div class='ele-name' title='Titanium'>
-                Ti
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-23 trans'>
-            <div class='ele-name' title='Vanadium'>
-                V
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-24 trans'>
-            <div class='ele-name' title='Chromium'>
-                Cr
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-25 trans'>
-            <div class='ele-name' title='Manganese'>
-                Mn
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-26 trans'>
-            <div class='ele-name' title='Iron'>
-                Fe
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-27 trans'>
-            <div class='ele-name' title='Cobalt'>
-                Co
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-28 trans'>
-            <div class='ele-name' title='Nickel'>
-                Ni
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-29 trans'>
-            <div class='ele-name' title='Copper'>
-                Cu
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-30 pTransition-metal'>
-            <div class='ele-name' title='Zinc'>
-                Zn
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-31 pTransition-metal'>
-            <div class='ele-name' title='Gallium'>
-                Ga
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-32 metalloid'>
-            <div class='ele-name' title='Germanium'>
-                Ge
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-33 metalloid'>
-            <div class='ele-name' title='Arsenic'>
-                As
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-34 patomic-nonmetal'>
-            <div class='ele-name' title='Selenium'>
-                Se
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-35 d-nonmetal liquid'>
-            <div class='ele-name' title='Bromine'>
-                Br
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-36 n-gas gas'>
-            <div class='ele-name' title='Krypton'>
-                Kr
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-37 al-metal'>
-            <div class='ele-name' title='Rubidium'>
-                Rb
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-38 alearth-metal'>
-            <div class='ele-name' title='Strontium'>
-                Sr
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-39 trans'>
-            <div class='ele-name' title='Yttrium'>
-                Y
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-40 trans'>
-            <div class='ele-name' title='Zirconium'>
-                Zr
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-41 trans'>
-            <div class='ele-name' title='Niobium'>
-                Nb
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-42 trans'>
-            <div class='ele-name' title='Molybdenum'>
-                Mo
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-43 trans'>
-            <div class='ele-name' title='Technetium'>
-                Tc
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-44 trans'>
-            <div class='ele-name' title='Ruthenium'>
-                Ru
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-45 trans'>
-            <div class='ele-name' title='Rhodium'>
-                Rh
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-46 trans'>
-            <div class='ele-name' title='Palladium'>
-                Pd
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-47 trans'>
-            <div class='ele-name' title='Silver'>
-                Ag
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-48 pTransition-metal'>
-            <div class='ele-name' title='Cadmium'>
-                Cd
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-49 pTransition-metal'>
-            <div class='ele-name' title='Indium'>
-                In
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-50 pTransition-metal'>
-            <div class='ele-name' title='Tin'>
-                Sn
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-51 metalloid'>
-            <div class='ele-name' title='Antimony'>
-                Sb
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-52 metalloid'>
-            <div class='ele-name' title='Tellurium'>
-                Te
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-53 d-nonmetal'>
-            <div class='ele-name' title='Iodine'>
-                I
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-54 n-gas gas'>
-            <div class='ele-name' title='Xenon'>
-                Xe
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-55 al-metal'>
-            <div class='ele-name' title='Cesium'>
-                Cs
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-56 alearth-metal'>
-            <div class='ele-name' title='Barium'>
-                Ba
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-57 lan lan-group'>
-            <div class='ele-name' title='Lanthanum'>
-                La
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-58 lan lan-group'>
-            <div class='ele-name' title='Cerium'>
-                Ce
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-59 lan lan-group'>
-            <div class='ele-name' title='Praseodymium'>
-                Pr
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-60 lan lan-group'>
-            <div class='ele-name' title='Neodymium'>
-                Nd
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-61 lan lan-group'>
-            <div class='ele-name' title='Promethium'>
-                Pm
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-62 lan lan-group'>
-            <div class='ele-name' title='Samarium'>
-                Sm
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-63 lan lan-group'>
-            <div class='ele-name' title='Europium'>
-                Eu
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-64 lan lan-group'>
-            <div class='ele-name' title='Gadolinium'>
-                Gd
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-65 lan lan-group'>
-            <div class='ele-name' title='Terbium'>
-                Tb
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-66 lan lan-group'>
-            <div class='ele-name' title='Dysprosium'>
-                Dy
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-67 lan lan-group'>
-            <div class='ele-name' title='Holmium'>
-                Ho
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-68 lan lan-group'>
-            <div class='ele-name' title='Erbium'>
-                Er
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-69 lan lan-group'>
-            <div class='ele-name' title='Thulium'>
-                Tm
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-70 lan lan-group'>
-            <div class='ele-name' title='Ytterbium'>
-                Yb
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-71 lan lan-group'>
-            <div class='ele-name' title='Lutetium'>
-                Lu
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-72 trans'>
-            <div class='ele-name' title='Hafnium'>
-                Hf
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-73 trans'>
-            <div class='ele-name' title='Tantalum'>
-                Ta
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-74 trans'>
-            <div class='ele-name' title='Tungsten'>
-                W
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-75 trans'>
-            <div class='ele-name' title='Rhenium'>
-                Re
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-76 trans'>
-            <div class='ele-name' title='Osmium'>
-                Os
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-77 trans'>
-            <div class='ele-name' title='Iridium'>
-                Ir
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-78 trans'>
-            <div class='ele-name' title='Platinum'>
-                Pt
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-79 trans'>
-            <div class='ele-name' title='Gold'>
-                Au
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-80 pTransition-metal'>
-            <div class='ele-name' title='Mercury'>
-                Hg
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-81 pTransition-metal'>
-            <div class='ele-name' title='Thallium'>
-                Tl
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-82 metalloid'>
-            <div class='ele-name' title='Lead'>
-                Pb
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-83 metalloid'>
-            <div class='ele-name' title='Bismuth'>
-                Bi
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-84 pTransition-metal'>
-            <div class='ele-name' title='Polonium'>
-                Po
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-85 pTransition-metal'>
-            <div class='ele-name' title='Astatine'>
-                At
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-86 n-gas gas'>
-            <div class='ele-name' title='Radon'>
-                Rn
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-87 al-metal'>
-            <div class='ele-name' title='Francium'>
-                Fr
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-88 alearth-metal'>
-            <div class='ele-name' title='Radium'>
-                Ra
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-89 act act-group'>
-            <div class='ele-name' title='Actinium'>
-                Ac
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-90 act act-group'>
-            <div class='ele-name' title='Thorium'>
-                Th
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-91 act act-group'>
-            <div class='ele-name' title='Protactinium'>
-                Pa
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-92 act act-group'>
-            <div class='ele-name' title='Uranium'>
-                U
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-93 act act-group'>
-            <div class='ele-name' title='Neptunium'>
-                Np
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-94 act act-group'>
-            <div class='ele-name' title='Plutonium'>
-                Pu
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-95 act act-group'>
-            <div class='ele-name' title='Americium'>
-                Am
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-96 act act-group'>
-            <div class='ele-name' title='Curium'>
-                Cm
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-97 act act-group'>
-            <div class='ele-name' title='Berkelium'>
-                Bk
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-98 act act-group'>
-            <div class='ele-name' title='Californium'>
-                Cf
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-99 act act-group'>
-            <div class='ele-name' title='Einsteinium'>
-                Es
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-100 act act-group'>
-            <div class='ele-name' title='Fermium'>
-                Fm
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-101 act act-group'>
-            <div class='ele-name' title='Mendelevium'>
-                Md
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-102 act act-group'>
-            <div class='ele-name' title='Nobelium'>
-                No
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-103 act act-group'>
-            <div class='ele-name' title='Lawrencium'>
-                Lr
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-104 trans'>
-            <div class='ele-name' title='Rutherfordium'>
-                Rf
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-105 trans'>
-            <div class='ele-name' title='Dubnium'>
-                Db
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-106 trans'>
-            <div class='ele-name' title='Seaborgium'>
-                Sg
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-107 trans'>
-            <div class='ele-name' title='Bohrium'>
-                Bh
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-108 trans'>
-            <div class='ele-name' title='Hassium'>
-                Hs
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-109 trans'>
-            <div class='ele-name' title='Meitnerium'>
-                Mt
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-110 trans'>
-            <div class='ele-name' title='Darmstadtium'>
-                Ds
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-111 trans'>
-            <div class='ele-name' title='Roentgenium'>
-                Rg
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-112 trans'>
-            <div class='ele-name' title='Copernicium'>
-                Cn
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-113 trans'>
-            <div class='ele-name' title='Nihonium'>
-                Nh
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-114 trans'>
-            <div class='ele-name' title='Flerovium'>
-                Fl
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-115 trans'>
-            <div class='ele-name' title='Moscovium'>
-                Mc
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-116 trans'>
-            <div class='ele-name' title='Livermorium'>
-                Lv
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-117 trans'>
-            <div class='ele-name' title='Tennessine'>
-                Ts
-            </div>
-        </div>
-        <div tabindex='0' class='ele ele-118 n-gas gas'>
-            <div class='ele-name' title='Oganesson'>
-                Og
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
+<div id='wrapper'>
+			<h1>The Periodic Table</h1>
+			<h3>by Brady Sammons</h3>
+  <div id='key'>
+				<ul>
+					<li><span class='swatch element-metal'></span>Metals</li>
+					<li><span class='swatch element-non-metal'></span>Non-Metals</li>
+					<li><span class='swatch element-alkali-metal'></span>Alkali Metals</li>
+					<li><span class='swatch element-alkali-earth-metal'></span>Alkali Earth Metals</li>
+				</ul>
+				<ul>
+					<li><span class='swatch element-transition-metal'></span>Transitional Metals</li>
+					<li><span class='swatch element-lanthoid'></span>Lanthoids</li>
+					<li><span class='swatch element-actinoid'></span>Actinoids</li>
+				</ul>
+				<ul>
+					<li><span class='swatch element-metalloid'></span>Metaloids</li>
+					<li><span class='swatch element-halogen'></span>Halogens</li>
+					<li><span class='swatch element-noble-gas'></span>Noble Gas</li>
+				</ul>
+			</div>
+			<div id='elements'>
+				<!-- Row One -->
+				<div class='element-non-metal'>
+					<div class='chip'>
+						<div class="face front">
+							<i>1</i>
+							<strong>H</strong>
+						</div>
+						<div class='face back'>
+							<p>Hydrogen<span>1.0079</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>			
+				<div class='element-noble-gas'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>2</i>
+							<strong>He</strong>
+						</div>
+							
+						<div class='face back'>
+							<p>Helium<span>4.0026</span><p>
+						</div>
+					</div>
+				</div><!-- //Row One -->
+ 
+				<!-- Row Two -->	
+				<div class='element-alkali-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>3</i>
+							<strong>Li</strong>
+						</div>
+						<div class='face back'>
+							<p>Lithium<span>6.941</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-alkali-earth-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>4</i>
+							<strong>Be</strong>
+						</div>
+						<div class='face back'>
+							<p>Beryllium<span>6.941</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>	
+				<div class='element-metalloid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>5</i>
+							<strong>B</strong>
+						</div>
+						<div class='face back'>
+							<p>Baron<span>10.811</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-non-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>6</i>
+							<strong>C</strong>
+						</div>
+						<div class='face back'>
+							<p>Carbon<span>12.0107</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-non-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>7</i>
+							<strong>N</strong>
+						</div>
+						<div class='face back'>
+							<p>Nitrogen<span>14.0067</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-non-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>8</i>
+							<strong>O</strong>
+						</div>
+						<div class='face back'>
+							<p>Oxygen<span>15.9994</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-halogen'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>9</i>
+							<strong>F</strong>
+						</div>
+						<div class='face back'>
+							<p>Fluorine<span>18.998</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-noble-gas'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>10</i>
+							<strong>Ne</strong>
+						</div>
+						<div class='face back'>
+							<p>Neon<span>20.1797</span><p>
+						</div>
+					</div>
+				</div><!-- //Row Two -->
+ 
+				<!-- Row Three -->	
+				<div class='element-alkali-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>11</i>
+							<strong>Na</strong>
+						</div>
+						<div class='face back'>
+							<p>Sodium<span>6.941</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-alkali-earth-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>12</i>
+							<strong>Mg</strong>
+						</div>
+						<div class='face back'>
+							<p>Magnesium<span>24.3050</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>13</i>
+							<strong>Al</strong>
+						</div>
+						<div class='face back'>
+							<p>Aluminum<span>26.981</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metalloid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>14</i>
+							<strong>Si</strong>
+						</div>
+						<div class='face back'>
+							<p>Silicon<span>28.855</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-non-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>15</i>
+							<strong>P</strong>
+						</div>
+						<div class='face back'>
+							<p>phosphorus<span>30.973</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-non-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>16</i>
+							<strong>S</strong>
+						</div>
+						<div class='face back'>
+							<p>Sulfur<span>32.065</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-halogen'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>17</i>
+							<strong>Cl</strong>
+						</div>
+						<div class='face back'>
+							<p>Chlorine<span>35.453</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-noble-gas'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>18</i>
+							<strong>Ar</strong>
+						</div>
+						<div class='face back'>
+							<p>Argon<span>39.948</span><p>
+						</div>
+					</div>
+				</div><!-- //Row Three -->
+ 
+				<!-- Row Four -->	
+				<div class='element-alkali-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>19</i>
+							<strong>K</strong>
+						</div>
+						<div class='face back'>
+							<p>Potassium<span>39.0983</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-alkali-earth-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>20</i>
+							<strong>Ca</strong>
+						</div>
+						<div class='face back'>
+							<p>Calcium<span>40.078</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>21</i>
+							<strong>Sc</strong>
+						</div>
+						<div class='face back'>
+							<p>Scandium<span>44.955</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>22</i>
+							<strong>Ti</strong>
+						</div>
+						<div class='face back'>
+							<p>Titanium<span>47.861</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>23</i>
+							<strong>V</strong>
+						</div>
+						<div class='face back'>
+							<p>Vanadium<span>50.0915</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>24</i>
+							<strong>Cr</strong>
+						</div>
+						<div class='face back'>
+							<p>Chromium<span>51.9961</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>25</i>
+							<strong>Mn</strong>
+						</div>
+						<div class='face back'>
+							<p>Manganese<span>54.938</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>26</i>
+							<strong>Fe</strong>
+						</div>
+						<div class='face back'>
+							<p>Iron<span>55.845</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>27</i>
+							<strong>Co</strong>
+						</div>
+						<div class='face back'>
+							<p>Cobalt<span>58.933</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>28</i>
+							<strong>Ni</strong>
+						</div>
+						<div class='face back'>
+							<p>Nickel<span>58.6934</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>29</i>
+							<strong>Cu</strong>
+						</div>
+						<div class='face back'>
+							<p>Copper<span>63.546</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>30</i>
+							<strong>Zn</strong>
+						</div>
+						<div class='face back'>
+							<p>Zinc<span>65.409</span><p>
+						</div>
+					</div>
+				</div>	
+				<div class='element-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>31</i>
+							<strong>Ga</strong>
+						</div>
+						<div class='face back'>
+							<p>Gallium<span>69.732</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metalloid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>32</i>
+							<strong>Ge</strong>
+						</div>
+						<div class='face back'>
+							<p>Germanium<span>72.64</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metalloid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>33</i>
+							<strong>As</strong>
+						</div>
+						<div class='face back'>
+							<p>Arsenic<span>74.921</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-non-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>34</i>
+							<strong>Se</strong>
+						</div>
+						<div class='face back'>
+							<p>Selenium<span>78.96</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-halogen'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>35</i>
+							<strong>Br</strong>
+						</div>
+						<div class='face back'>
+							<p>Bromine<span>79.904</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-noble-gas'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>18</i>
+							<strong>Ar</strong>
+						</div>
+						<div class='face back'>
+							<p>Argon<span>39.948</span><p>
+						</div>
+					</div>
+				</div><!-- //Row Four -->
+ 
+				<!-- Row Five -->	
+				<div class='element-alkali-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>37</i>
+							<strong>Rb</strong>
+						</div>
+						<div class='face back'>
+							<p>Rubidium<span>85.4678</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-alkali-earth-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>38</i>
+							<strong>Sr</strong>
+						</div>
+						<div class='face back'>
+							<p>Strontuim<span>87.62</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>39</i>
+							<strong>Y</strong>
+						</div>
+						<div class='face back'>
+							<p>Yttrium<span>88.905</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>40</i>
+							<strong>Zr</strong>
+						</div>
+						<div class='face back'>
+							<p>Zirconium<span>91.224</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>41</i>
+							<strong>Nb</strong>
+						</div>
+						<div class='face back'>
+							<p>Niobium<span>92.224</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>42</i>
+							<strong>Mo</strong>
+						</div>
+						<div class='face back'>
+							<p>Molybdenum<span>51.9961</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>43</i>
+							<strong>Tc</strong>
+						</div>
+						<div class='face back'>
+							<p>Technetium<span>[98]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>44</i>
+							<strong>Ru</strong>
+						</div>
+						<div class='face back'>
+							<p>Ruthenium<span>101.07</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>45</i>
+							<strong>Rh</strong>
+						</div>
+						<div class='face back'>
+							<p>Rhodium<span>102.905</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>46</i>
+							<strong>Pd</strong>
+						</div>
+						<div class='face back'>
+							<p>Palladlum<span>106.42</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>47</i>
+							<strong>Ag</strong>
+						</div>
+						<div class='face back'>
+							<p>Silver<span>107.862</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>48</i>
+							<strong>Cd</strong>
+						</div>
+						<div class='face back'>
+							<p>Cadmium<span>112.411</span><p>
+						</div>
+					</div>
+				</div>	
+				<div class='element-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>49</i>
+							<strong>In</strong>
+						</div>
+						<div class='face back'>
+							<p>Indium<span>114.813</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>50</i>
+							<strong>Sn</strong>
+						</div>
+						<div class='face back'>
+							<p>Tin<span>118.710</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metalloid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>51</i>
+							<strong>Sb</strong>
+						</div>
+						<div class='face back'>
+							<p>Antimony<span>121.760</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metalloid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>52</i>
+							<strong>Te</strong>
+						</div>
+						<div class='face back'>
+							<p>Tellurium<span>127.60</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-halogen'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>53</i>
+							<strong>I</strong>
+						</div>
+						<div class='face back'>
+							<p>Iodine<span>126.904</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-noble-gas'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>54</i>
+							<strong>Xe</strong>
+						</div>
+						<div class='face back'>
+							<p>Xenon<span>131.293</span><p>
+						</div>
+					</div>
+				</div><!-- //Row Five -->
+ 
+				<!-- Row Six -->	
+				<div class='element-alkali-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>55</i>
+							<strong>Cs</strong>
+						</div>
+						<div class='face back'>
+							<p>Caesium<span>132.905</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-alkali-earth-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>56</i>
+							<strong>Ba</strong>
+						</div>
+						<div class='face back'>
+							<p>Barium<span>137.327</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthanoid-transitional-metal'>
+					<div class='chip long'>
+						<div class='face front'>
+							<i>57-71</i>
+							<strong>La-Lu</strong>
+						</div>
+						<div class='face back'>
+							<p>Lanthanoids<span></span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>72</i>
+							<strong>Hf</strong>
+						</div>
+						<div class='face back'>
+							<p>Hafnium<span>178.49</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>73</i>
+							<strong>Ta</strong>
+						</div>
+						<div class='face back'>
+							<p>Tantalum<span>180.947</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>74</i>
+							<strong>W</strong>
+						</div>
+						<div class='face back'>
+							<p>Tungsten<span>183.84</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>75</i>
+							<strong>Re</strong>
+						</div>
+						<div class='face back'>
+							<p>Rhenium<span>186.207</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>76</i>
+							<strong>Os</strong>
+						</div>
+						<div class='face back'>
+							<p>Osmium<span>190.23</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>77</i>
+							<strong>Ir</strong>
+						</div>
+						<div class='face back'>
+							<p>Iridium<span>192.217</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>78</i>
+							<strong>Pt</strong>
+						</div>
+						<div class='face back'>
+							<p>Platinum<span>195.084</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>79</i>
+							<strong>Au</strong>
+						</div>
+						<div class='face back'>
+							<p>Gold<span>196.966</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>80</i>
+							<strong>Hg</strong>
+						</div>
+						<div class='face back'>
+							<p>Mercury<span>200.59</span><p>
+						</div>
+					</div>
+				</div>	
+				<div class='element-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>81</i>
+							<strong>Tl</strong>
+						</div>
+						<div class='face back'>
+							<p>Thallium<span>204.3833</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>82</i>
+							<strong>Pb</strong>
+						</div>
+						<div class='face back'>
+							<p>Lead<span>207.2</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metalloid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>83</i>
+							<strong>Bi</strong>
+						</div>
+						<div class='face back'>
+							<p>Bismuth<span>208.980</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-metalloid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>84</i>
+							<strong>Po</strong>
+						</div>
+						<div class='face back'>
+							<p>Polonium<span>[209]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-halogen'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>85</i>
+							<strong>At</strong>
+						</div>
+						<div class='face back'>
+							<p>Astatine<span>[210]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-noble-gas'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>86</i>
+							<strong>Rn</strong>
+						</div>
+						<div class='face back'>
+							<p>Radon<span>[222]</span><p>
+						</div>
+					</div>
+				</div><!-- //Row Six -->
+ 
+				<!-- Row Seven -->	
+				<div class='element-alkali-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>87</i>
+							<strong>Fr</strong>
+						</div>
+						<div class='face back'>
+							<p>Francium<span>[223]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-alkali-earth-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>88</i>
+							<strong>Ra</strong>
+						</div>
+						<div class='face back'>
+							<p>Radium<span>[226]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid-transitional-metal'>
+					<div class='chip long'>
+						<div class='face front'>
+							<i>89-103</i>
+							<strong>Ac-Lr</strong>
+						</div>
+						<div class='face back'>
+							<p>Actinoids<span></span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>104</i>
+							<strong>Rf</strong>
+						</div>
+						<div class='face back'>
+							<p>Rutherfordium<span>[261]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>105</i>
+							<strong>Db</strong>
+						</div>
+						<div class='face back'>
+							<p>Dubnium<span>[262]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>106</i>
+							<strong>Sg</strong>
+						</div>
+						<div class='face back'>
+							<p>Seaborgium<span>[266]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>107</i>
+							<strong>Bh</strong>
+						</div>
+						<div class='face back'>
+							<p>Bohrium<span>[264]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>108</i>
+							<strong>Hs</strong>
+						</div>
+						<div class='face back'>
+							<p>Hassium<span>[277]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>109</i>
+							<strong>Mt</strong>
+						</div>
+						<div class='face back'>
+							<p>Meltnerium<span>[268]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>110</i>
+							<strong>Ds</strong>
+						</div>
+						<div class='face back'>
+							<p>Darmstadtium<span>[271]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>111</i>
+							<strong>Rg</strong>
+						</div>
+						<div class='face back'>
+							<p>Roentgenium<span>[272]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-transition-metal'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>112</i>
+							<strong>Cn</strong>
+						</div>
+						<div class='face back'>
+							<p>Copernicium<span>[285]</span><p>
+						</div>
+					</div>
+				</div><!-- //Row Seven -->
+ 
+				<div class='element-blank full'></div>
+ 
+				<!-- Row Eight -->	
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>57</i>
+							<strong>La</strong>
+						</div>
+						<div class='face back'>
+							<p>Lanthanum<span>138.905</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>58</i>
+							<strong>Ce</strong>
+						</div>
+						<div class='face back'>
+							<p>Cerium<span>140.116</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>59</i>
+							<strong>Pr</strong>
+						</div>
+						<div class='face back'>
+							<p>Praseodymium<span>140.907</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>60</i>
+							<strong>Nd</strong>
+						</div>
+						<div class='face back'>
+							<p>Neodymium<span>144.242</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>61</i>
+							<strong>Pm</strong>
+						</div>
+						<div class='face back'>
+							<p>Promethium<span>[145]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>62</i>
+							<strong>Sm</strong>
+						</div>
+						<div class='face back'>
+							<p>Samarium<span>150.36</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>63</i>
+							<strong>Eu</strong>
+						</div>
+						<div class='face back'>
+							<p>Europium<span>151.36</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>64</i>
+							<strong>Gd</strong>
+						</div>
+						<div class='face back'>
+							<p>Gadolinium<span>157.25</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>65</i>
+							<strong>Tb</strong>
+						</div>
+						<div class='face back'>
+							<p>Terbium<span>158.925</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>66</i>
+							<strong>Dy</strong>
+						</div>
+						<div class='face back'>
+							<p>Dysprosium<span>162.500</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>67</i>
+							<strong>Ho</strong>
+						</div>
+						<div class='face back'>
+							<p>Holmium<span>164.930</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>68</i>
+							<strong>Er</strong>
+						</div>
+						<div class='face back'>
+							<p>Erbium<span>167.259</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>69</i>
+							<strong>Tm</strong>
+						</div>
+						<div class='face back'>
+							<p>Thulium<span>168.934</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>70</i>
+							<strong>Yb</strong>
+						</div>
+						<div class='face back'>
+							<p>Ytterbium<span>173.04</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-lanthoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>71</i>
+							<strong>Lu</strong>
+						</div>
+						<div class='face back'>
+							<p>Lutetium<span>174.967</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-blank'></div>
+				<!-- //Row Eight -->
+ 
+				<!-- Row Nine -->	
+				<div class='element-blank'></div>
+				<div class='element-blank'></div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>89</i>
+							<strong>Ac</strong>
+						</div>
+						<div class='face back'>
+							<p>Actinium<span>[227]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>90</i>
+							<strong>Th</strong>
+						</div>
+						<div class='face back'>
+							<p>Thorium<span>232.038</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>91</i>
+							<strong>Pa</strong>
+						</div>
+						<div class='face back'>
+							<p>Protactinium<span>232.038</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>92</i>
+							<strong>U</strong>
+						</div>
+						<div class='face back'>
+							<p>Uranium<span>238.028</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>93</i>
+							<strong>Np</strong>
+						</div>
+						<div class='face back'>
+							<p>Neptunium<span>[237]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>94</i>
+							<strong>Pu</strong>
+						</div>
+						<div class='face back'>
+							<p>Plutonium<span>[244]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>95</i>
+							<strong>Am</strong>
+						</div>
+						<div class='face back'>
+							<p>Americium<span>[243]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>96</i>
+							<strong>Cm</strong>
+						</div>
+						<div class='face back'>
+							<p>Curium<span>[247]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>97</i>
+							<strong>Bk</strong>
+						</div>
+						<div class='face back'>
+							<p>Berkelium<span>[247]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>98</i>
+							<strong>Cf</strong>
+						</div>
+						<div class='face back'>
+							<p>Californium<span>[251]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>99</i>
+							<strong>Es</strong>
+						</div>
+						<div class='face back'>
+							<p>Einsteinium<span>[257]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>100</i>
+							<strong>Fm</strong>
+						</div>
+						<div class='face back'>
+							<p>Fermium<span>[257]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>101</i>
+							<strong>Md</strong>
+						</div>
+						<div class='face back'>
+							<p>Mendelevium<span>[258]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>102</i>
+							<strong>No</strong>
+						</div>
+						<div class='face back'>
+							<p>Nobelium<span>[259]</span><p>
+						</div>
+					</div>
+				</div>
+				<div class='element-actinoid'>
+					<div class='chip'>
+						<div class='face front'>
+							<i>103</i>
+							<strong>Lr</strong>
+						</div>
+						<div class='face back'>
+							<p>Lawrencium<span>[262]</span><p>
+						</div>
+					</div>
+				</div>
+				</div><!-- //Row Nine -->
+				
+			</div><!-- //Elements -->
+		</div> <!-- //Wrapper -->
