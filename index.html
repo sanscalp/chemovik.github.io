@@ -1,39 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Chemovik – Under Construction</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyChemovik</title>
   <style>
     body {
-      margin: 0; height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      background-color: #556B2F;
-      font-family: sans-serif; color: #fff;
-      flex-direction: column;
+      margin: 0;
+      background-color: #44422F;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fffbe6;
+      overflow-x: hidden;
     }
-    .gear {
-      width: 100px; height: 100px;
-      margin-bottom: 1rem;
-      animation: spin 4s linear infinite;
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 20px;
     }
-    h1 { font-size: 2.5rem; margin: .5rem 0; text-transform: uppercase; }
-    p  { font-size: 1.1rem; opacity: 0.8; }
+
+    h1 {
+      font-size: 4rem;
+      animation: pulse 4s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.7; transform: scale(1); }
+    }
+
+    .fact-box {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px dashed #ccc;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 1rem;
+      padding: 20px;
+      margin-top: 100px;
+      color: #ccc;
+    }
+
+    .under-construction {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: #444;
+      padding: 10px 20px;
+      border: 1px solid #999;
+      color: #FFD700;
+      font-weight: bold;
+      animation: flicker 2s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
   </style>
 </head>
 <body>
-  <svg class="gear" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="10" fill="#fff"/>
-    <path fill="none" stroke="#fff" stroke-width="8" d="
-      M50 2 L50 20 M50 98 L50 80 M2 50 L20 50 M98 50 L80 50
-      M20 20 L30 30 M80 80 L70 70 M20 80 L30 70 M80 20 L70 30
-    "/>
-  </svg>
-  <h1> Chemovik - UNDER CONSTRUCTION </h1>
-  <p>Come back soon for something awesome!</p>
+
+<canvas id="chemCanvas"></canvas>
+
+<header>
+  <h1>🔬 MyChemovik</h1>
+  <p>Explore Chemistry with Curiosity & Creativity</p>
+</header>
+
+<div class="fact-box" id="factBox">Loading cool chemistry facts...</div>
+
+<div class="under-construction">⚠ Chemovik – Under Construction ⚠</div>
+
+<div class="footer">
+  © 2025 Sankalp Dubey – MyChemovik. All rights reserved.
+</div>
+
+<script>
+  // Background Animated Molecules (Canvas)
+  const canvas = document.getElementById("chemCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 4 + 2,
+      dx: (Math.random() - 0.5) * 1.5,
+      dy: (Math.random() - 0.5) * 1.5
+    });
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "#80dfff";
+      ctx.fill();
+    });
+  }
+
+  function updateParticles() {
+    particles.forEach(p => {
+      p.x += p.dx;
+      p.y += p.dy;
+
+      if (p.x + p.r > canvas.width || p.x - p.r < 0) p.dx *= -1;
+      if (p.y + p.r > canvas.height || p.y - p.r < 0) p.dy *= -1;
+    });
+  }
+
+  function animate() {
+    drawParticles();
+    updateParticles();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // Chemistry Fun Facts
+  const facts = [
+    "💡 Water expands when it freezes — unlike most substances!",
+    "🔥 Mercury is the only metal that is liquid at room temperature.",
+    "🧠 Your brain uses chemistry to generate thoughts and emotions!",
+    "🌬️ Oxygen was discovered independently by Carl Scheele and Joseph Priestley.",
+    "☠️ One teaspoon of neutron star material would weigh 6 billion tons.",
+    "⚗️ Antoine Lavoisier is known as the father of modern chemistry.",
+    "🧪 There are more atoms in a glass of water than glasses of water in all the oceans.",
+    "🧊 Dry ice is the solid form of carbon dioxide, not water!"
+  ];
+
+  const factBox = document.getElementById("factBox");
+  let factIndex = 0;
+
+  function showNextFact() {
+    factBox.innerHTML = facts[factIndex];
+    factIndex = (factIndex + 1) % facts.length;
+  }
+
+  showNextFact();
+  setInterval(showNextFact, 5000);
+
+  // Adjust canvas on resize
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
 </body>
 </html>
