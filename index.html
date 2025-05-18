@@ -2,71 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chemovik – Click Facts for Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyChemovik</title>
   <style>
-    /* Base */
     body {
+      margin: 0;
       background-color: #44422F;
-      color: #E0E0C6;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+      color: #fffbe6;
       overflow-x: hidden;
     }
-    h1 {
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    header {
       text-align: center;
-      margin-bottom: 1.5rem;
-      animation: fadeIn 1s ease-out;
+      padding: 60px 20px 20px;
     }
 
-    /* Facts List */
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      position: relative;
-      padding: 0.5rem 1rem;
-      margin: 0.25rem 0;
-      cursor: pointer;
-      border-radius: 6px;
-      border-bottom: 1px solid #666552;
-      background: rgba(0,0,0,0.1);
-      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-      animation: slideIn 0.5s forwards;
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    /* staggered entrance */
-    li:nth-child(odd)  { animation-delay: 0.2s; }
-    li:nth-child(even) { animation-delay: 0.3s; }
-
-    /* Hover Animations */
-    li:hover {
-      animation: pulse 0.8s ease-in-out infinite, ripple 0.6s ease-out forwards;
-      background: rgba(255,255,255,0.1);
-      transform: scale(1.02) rotate(-1deg);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      border-color: #E0E0C6;
+    h1 {
+      font-size: 4rem;
+      animation: pulse 4s infinite;
     }
 
-    /* Detail Box */
-    .detail {
-      margin: 0.25rem 0 0.8rem 1.5rem;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      color: #c9c9b4;
-      background: rgba(0, 0, 0, 0.2);
-      border-left: 3px solid #E0E0C6;
-      border-radius: 4px;
-      display: none;
-      animation: fadeInDetail 0.4s ease-out;
+    @keyframes pulse {
+      0% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.7; transform: scale(1); }
     }
-    .detail.show {
-      display: block;
+
+    .fact-box {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px dashed #ccc;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 1rem;
+      padding: 20px;
+      margin-top: 100px;
+      color: #ccc;
     }
 
     /* Under‑Construction Section */
@@ -92,27 +78,19 @@
     }
     .construction p {
       font-size: 1.1rem;
-      opacity: 0.8;
+      opacity: 0;
       color: #eee;
       animation: fadeInText 2s ease-out 0.5s forwards;
-      opacity: 0;
     }
 
-    /* Keyframes */
-    @keyframes slideIn {
-      to { opacity: 1; transform: translateX(0); }
-    }
+    /* Keyframes for Under‑Construction */
     @keyframes fadeIn {
       from { opacity: 0; }
-      to { opacity: 1; }
+      to   { opacity: 1; }
     }
     @keyframes fadeInText {
       from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 0.8; transform: translateY(0); }
-    }
-    @keyframes fadeInDetail {
-      from { opacity: 0; transform: scaleY(0.8); }
-      to { opacity: 1; transform: scaleY(1); }
+      to   { opacity: 0.8; transform: translateY(0); }
     }
     @keyframes spin {
       from { transform: rotate(0deg); }
@@ -122,653 +100,241 @@
       0%, 100% { opacity: 1; }
       50%      { opacity: 0.3; }
     }
-    @keyframes pulse {
-      0%   { transform: scale(1) rotate(0); }
-      50%  { transform: scale(1.03) rotate(-1deg); }
-      100% { transform: scale(1) rotate(0); }
-    }
-    @keyframes ripple {
-      0%   { box-shadow: 0 0 0 0 rgba(224,224,198, 0.7); }
-      100% { box-shadow: 0 0 50px 25px rgba(224,224,198, 0); }
-    }
   </style>
 </head>
 <body>
 
-  <h1>Chemovik – Click Any Fact to Reveal Details</h1>
-  <ul id="factsList"></ul>
+<canvas id="chemCanvas"></canvas>
 
-  <!-- Under Construction Section -->
-  <section class="construction">
-    <svg class="gear" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="10" fill="#fff"/>
-      <path fill="none" stroke="#fff" stroke-width="8" d="
-        M50 2 L50 20 M50 98 L50 80 M2 50 L20 50 M98 50 L80 50
-        M20 20 L30 30 M80 80 L70 70 M20 80 L30 70 M80 20 L70 30
-      "/>
-    </svg>
-    <h2>Chemovik – Under Construction</h2>
-    <p>Come back soon for something awesome!</p>
-  </section>
+<header>
+  <h1>🔬 MyChemovik</h1>
+  <p>Explore Chemistry with Curiosity & Creativity</p>
+</header>
 
-  <script>
-    const facts = [
-      {
-        fact: "Water expands when it freezes.",
-        detail: "When water freezes, its molecules form a hexagonal crystalline lattice via hydrogen bonding. This structure spaces molecules further apart than in liquid water, making ice less dense and causing it to float."
-      },
-      {
-        fact: "Helium can escape Earth’s gravity.",
-        detail: "Helium atoms are extremely light and chemically inert. In the upper atmosphere they reach speeds that exceed escape velocity, allowing them to slowly leak into space over geological time."
-      },
-      {
-        fact: "Diamond and graphite are both pure carbon.",
-        detail: "Although identical in composition, their properties differ: diamond’s tetrahedral 3D network makes it the hardest natural material, while graphite’s planar sheets slide easily, yielding a soft, lubricating form."
-      },
-      {
-        fact: "Mercury is the only liquid metal at room temperature.",
-        detail: "Relativistic effects on mercury’s electrons weaken its metallic bonds compared to other metals, lowering its melting point so it remains liquid at 20–25 °C."
-      },
-      {
-        fact: "Astatine is so rare, only a few grams exist on Earth.",
-        detail: "All isotopes of astatine are highly radioactive with half‑lives under hours. Natural production via decay of heavier elements yields less than a gram in Earth’s crust at any given time."
-      },
-      {
-        fact: "Fluorine is the most reactive element.",
-        detail: "With the highest electronegativity and small atomic radius, fluorine aggressively attracts electrons—forming bonds with almost every other element, often violently."
-      },
-      {
-        fact: "Salt lowers the freezing point of water.",
-        detail: "Dissolved Na⁺ and Cl⁻ ions disrupt water’s hydrogen‑bond network, requiring colder temperatures to form ice—a phenomenon called freezing‑point depression."
-      },
-      {
-        fact: "Liquid nitrogen boils at -196 °C.",
-        detail: "At atmospheric pressure nitrogen transitions from liquid to gas at −195.8 °C, absorbing heat (latent heat of vaporization) for cryogenic cooling applications."
-      },
-      {
-        fact: "Gold is the most malleable metal.",
-        detail: "Gold’s face‑centered cubic lattice and metallic bonding allow atomic layers to slide past each other without fracturing, so it can be beaten into foil just a few atoms thick."
-      },
-      {
-        fact: "Hydrogen is the lightest element.",
-        detail: "With a single proton and electron, hydrogen’s minimal atomic mass gives it unique quantum properties and makes it the dominant element in stars and the universe."
-      },
-      {
-        fact: "Radioactive bananas exist (potassium‑40).",
-        detail: "Bananas contain K‑40, a naturally occurring radioisotope (0.012% of all potassium) that undergoes beta decay. The resulting radiation dose is trivial but measurable."
-      },
-      {
-        fact: "Dry ice is solid CO₂.",
-        detail: "Solid carbon dioxide sublimates at −78.5 °C directly to gas under atmospheric pressure. It’s used as a refrigerant and to create fog effects due to rapid gas release."
-      },
-      {
-        fact: "Rusting is a redox reaction.",
-        detail: "Iron oxidizes (loses electrons) to form Fe²⁺/Fe³⁺ ions, while oxygen reduces (gains electrons). Water acts as an electrolyte, facilitating this slow but destructive electrochemical process."
-      },
-      {
-        fact: "Oxygen is paramagnetic.",
-        detail: "O₂ molecules have two unpaired electrons, producing a magnetic moment that makes liquid and gaseous oxygen attracted to external magnetic fields."
-      },
-      {
-        fact: "Chemical reactions release or absorb energy.",
-        detail: "Bond breakage requires energy input, while bond formation releases energy. Exothermic reactions release net heat; endothermic absorb net heat, governed by enthalpy change (ΔH)."
-      },
-      {
-        fact: "Superacids can dissolve glass.",
-        detail: "Superacids like fluoroantimonic acid (HSbF₆) protonate even very weak bases and break Si–O bonds in glass, dissolving it via formation of hexafluorosilicate complexes."
-      },
-      {
-        fact: "Cesium explodes in water.",
-        detail: "Cesium’s low ionization energy makes it extremely reactive with H₂O, producing CsOH and H₂ gas. The reaction’s heat ignites the hydrogen, causing explosive foaming."
-      },
-      {
-        fact: "Noble gases rarely form compounds.",
-        detail: "With full valence shells, noble gases are chemically inert. Only xenon and krypton under extreme conditions form fluorides or oxides, breaking through their stability."
-      },
-      {
-        fact: "The pH scale is logarithmic.",
-        detail: "pH = −log₁₀[H⁺]. Each unit change corresponds to a tenfold change in hydrogen‑ion concentration; pH 4 is ten times more acidic than pH 5."
-      },
-      {
-        fact: "Acids donate H⁺ ions.",
-        detail: "According to Brønsted–Lowry theory, acids are substances that release protons into aqueous solution, increasing free hydrogen‑ion concentration and lowering pH."
-      },
-      {
-        fact: "Bases accept H⁺ ions.",
-        detail: "Brønsted–Lowry bases capture protons from solution, decreasing free H⁺ concentration and raising pH; many bases contain OH⁻ which directly combines with H⁺."
-      },
-      {
-        fact: "Ant bites inject formic acid.",
-        detail: "Formic acid (HCOOH) is used by ants as a defense chemical. It causes a stinging sensation and can lower pH locally on the skin."
-      },
-      {
-        fact: "Vinegar is acetic acid.",
-        detail: "Household vinegar is roughly 5–8% acetic acid (CH₃COOH) in water, produced by fermentation of ethanol by acetic acid bacteria."
-      },
-      {
-        fact: "Soap molecules have polar and non‑polar ends.",
-        detail: "A soap’s hydrophilic “head” bonds with water, while its hydrophobic “tail” binds oils. This duality forms micelles that trap grease for rinsing."
-      },
-      {
-        fact: "Nitroglycerin is explosive yet used in medicine.",
-        detail: "Nitroglycerin (C₃H₅N₃O₉) releases vast energy when its O–NO₂ bonds break, detonating. In low doses it dilates blood vessels by releasing NO, treating angina."
-      },
-      {
-        fact: "TNT stands for trinitrotoluene.",
-        detail: "TNT (C₇H₅N₃O₆) is a stable nitroaromatic explosive; its nitro groups on a toluene ring release energy explosively when triggered by a detonator."
-      },
-      {
-        fact: "Graphene is a single layer of carbon atoms.",
-        detail: "Graphene’s 2D honeycomb lattice gives it extraordinary strength, electrical conductivity, and flexibility—properties promising for electronics and composites."
-      },
-      {
-        fact: "Polymers are long chains of repeating units.",
-        detail: "Monomers link via covalent bonds in polymerization reactions. Properties depend on monomer type, chain length, and cross‑linking density."
-      },
-      {
-        fact: "PVC stands for polyvinyl chloride.",
-        detail: "PVC is a vinyl polymer made by polymerizing vinyl chloride monomer. It’s rigid when unplasticized and flexible when plasticizers are added."
-      },
-      {
-        fact: "Nylon was the first synthetic fiber.",
-        detail: "Invented in 1935, nylon is a polyamide formed by condensation of hexamethylenediamine and adipic acid, creating strong, elastic fibers for textiles."
-      },
-      {
-        fact: "Ammonia has a trigonal pyramidal shape.",
-        detail: "NH₃ has three N–H bonds and a lone pair on nitrogen, forming a trigonal pyramidal geometry with a bond angle of ~107°."
-      },
-      {
-        fact: "Benzene has a ring of 6 carbon atoms.",
-        detail: "C₆H₆’s planar hexagonal ring features delocalized π‑electrons above/below the ring, giving aromatic stability and unique reactivity."
-      },
-      {
-        fact: "Aspirin is derived from willow bark.",
-        detail: "Salicylic acid from willow was acetylated to acetylsalicylic acid (aspirin), which inhibits COX enzymes reducing inflammation and pain."
-      },
-      {
-        fact: "Vitamin C is ascorbic acid.",
-        detail: "As a six‑carbon lactone, ascorbic acid (C₆H₈O₆) acts as an antioxidant and cofactor in collagen synthesis."
-      },
-      {
-        fact: "Hydrogen peroxide fizzes on wounds.",
-        detail: "H₂O₂ decomposes in presence of catalase (enzyme in blood) into H₂O and O₂ gas, creating foaming that helps clean wounds."
-      },
-      {
-        fact: "Mole is 6.022×10²³ particles.",
-        detail: "Avogadro’s constant defines the number of atoms or molecules in one mole, linking atomic mass units to grams in macroscopic samples."
-      },
-      {
-        fact: "Allotropes are different forms of the same element.",
-        detail: "Allotropes arise from differing atomic arrangements: carbon’s graphite, diamond, graphene, fullerenes, each with distinct properties."
-      },
-      {
-        fact: "Ionic bonds involve electron transfer.",
-        detail: "One atom donates electrons to another, creating oppositely charged ions that attract via electrostatic forces, typical in salts like NaCl."
-      },
-      {
-        fact: "Covalent bonds share electrons.",
-        detail: "Atoms share electron pairs to achieve filled valence shells; bond strength and polarity depend on electronegativity differences."
-      },
-      {
-        fact: "Metallic bonds create an electron \"sea.\"",
-        detail: "Metal atoms release valence electrons into a delocalized pool, allowing conductivity, malleability, and ductility."
-      },
-      {
-        fact: "Sulfur smells like rotten eggs.",
-        detail: "Hydrogen sulfide (H₂S) and other volatile sulfur compounds produce the characteristic foul odor associated with decaying organic matter."
-      },
-      {
-        fact: "CO binds stronger than O₂ to hemoglobin.",
-        detail: "Carbon monoxide’s affinity for hemoglobin is ~200× that of oxygen, displacing O₂ and causing hypoxic damage."
-      },
-      {
-        fact: "Alchemy led to modern chemistry.",
-        detail: "Early alchemists’ pursuit of transmutation and medicinal elixirs developed laboratory techniques and apparatus foundational to chemistry."
-      },
-      {
-        fact: "Blood tastes metallic due to iron.",
-        detail: "Hemoglobin’s Fe²⁺ in blood interacts with saliva forming iron chloride complexes that impart a metallic taste."
-      },
-      {
-        fact: "Gases have no fixed volume or shape.",
-        detail: "Gas molecules move freely, filling any container uniformly; properties described by ideal gas law (PV=nRT)."
-      },
-      {
-        fact: "Liquids have fixed volume but no shape.",
-        detail: "Intermolecular forces hold liquids together at constant volume, but they flow to adopt container shape."
-      },
-      {
-        fact: "Solids have fixed volume and shape.",
-        detail: "Strong intermolecular forces fix particles in place, defining shape and volume unless enough energy is added to change phase."
-      },
-      {
-        fact: "Exothermic reactions release heat.",
-        detail: "Products are lower in enthalpy than reactants; the excess energy is emitted as heat, light, or sound."
-      },
-      {
-        fact: "Endothermic reactions absorb heat.",
-        detail: "Products have higher enthalpy than reactants; energy input from surroundings is required, causing cooling."
-      },
-      {
-        fact: "Enzymes speed up reactions in the body.",
-        detail: "By stabilizing transition states and lowering activation energy, enzymes can accelerate reaction rates by factors of millions."
-      },
-      {
-        fact: "Catalysts are not consumed in reactions.",
-        detail: "Catalysts provide alternative pathways with lower activation energy but emerge unchanged after the reaction cycle."
-      },
-      {
-        fact: "pH of stomach acid is 1.5 to 3.5.",
-        detail: "Stomach secretes hydrochloric acid to digest proteins; this highly acidic pH kills pathogens and activates pepsin."
-      },
-      {
-        fact: "Buckyballs are spherical carbon molecules.",
-        detail: "C₆₀ fullerenes resemble soccer balls of 20 hexagons and 12 pentagons with unique electrical and mechanical properties."
-      },
-      {
-        fact: "DNA is a polymer of nucleotides.",
-        detail: "Each nucleotide consists of a sugar, phosphate, and nitrogenous base; phosphodiester bonds link them into long, helical strands."
-      },
-      {
-        fact: "Penicillin was the first true antibiotic.",
-        detail: "Produced by Penicillium mold, penicillin inhibits bacterial cell wall synthesis by binding transpeptidase enzymes, leading to cell lysis."
-      },
-      {
-        fact: "Ethanol can be used as fuel.",
-        detail: "Fermented from biomass, ethanol combusts cleanly (2 C₂H₅OH + 6 O₂ → 4 CO₂ + 6 H₂O), and can be blended with gasoline."
-      },
-      {
-        fact: "Air is mostly nitrogen.",
-        detail: "≈78% N₂, 21% O₂, and trace gases make up Earth’s atmosphere. N₂ is inert, stabilizing atmospheric chemistry."
-      },
-      {
-        fact: "CO₂ causes soda to fizz.",
-        detail: "Under pressure CO₂ dissolves forming H₂CO₃. Release of pressure shifts equilibrium, releasing CO₂ gas as bubbles."
-      },
-      {
-        fact: "Electrolysis splits water into H₂ and O₂.",
-        detail: "2 H₂O(l) → 2 H₂(g) + O₂(g) when an electric current passes through water with an electrolyte, used for hydrogen production."
-      },
-      {
-        fact: "Redox = reduction + oxidation.",
-        detail: "Reduction—gain of electrons; oxidation—loss of electrons. These coupled processes power energy conversion in cells and batteries."
-      },
-      {
-        fact: "Noble metals resist corrosion.",
-        detail: "Gold, platinum, and palladium have filled d‑orbitals and low reactivity, making them resistant to oxidation and acids."
-      },
-      {
-        fact: "Silver tarnishes but gold doesn’t.",
-        detail: "Silver reacts with sulfur compounds forming Ag₂S (black tarnish). Gold’s inertness prevents such surface reactions."
-      },
-      {
-        fact: "Liquid oxygen is pale blue.",
-        detail: "Electron transitions in O₂ absorb orange/red light, transmitting blue when liquefied at −183 °C."
-      },
-      {
-        fact: "Pure sulfur burns with a blue flame.",
-        detail: "Sulfur combines with oxygen forming SO₂ and emits a blue flame due to specific excited‑state emissions."
-      },
-      {
-        fact: "Acetone is used in nail polish remover.",
-        detail: "A polar aprotic solvent, acetone dissolves nitrocellulose in polish without harming the keratin in nails."
-      },
-      {
-        fact: "Soap and detergent are surfactants.",
-        detail: "Their amphiphilic structure enables micelle formation, emulsifying oils for removal in rinsing."
-      },
-      {
-        fact: "Combustion needs fuel, oxygen, and heat.",
-        detail: "The fire triangle: fuel + oxidizer + ignition energy produce exothermic reactions sustaining flame."
-      },
-      {
-        fact: "UV light can cause skin cancer via free radicals.",
-        detail: "UV photons break molecular bonds in DNA, generating radical species that cause mutations leading to oncogenesis."
-      },
-      {
-        fact: "Chlorophyll is magnesium-based.",
-        detail: "Chlorophyll’s tetrapyrrole ring chelates Mg²⁺, allowing efficient photon absorption in photosynthesis."
-      },
-      {
-        fact: "Hemoglobin contains iron.",
-        detail: "Each heme group binds Fe²⁺ which reversibly binds O₂, enabling oxygen transport in vertebrate blood."
-      },
-      {
-        fact: "Enzymes lower activation energy.",
-        detail: "Enzymes stabilize reactants in transition states via precise binding, drastically increasing reaction rates."
-      },
-      {
-        fact: "Molecules vibrate at specific frequencies.",
-        detail: "Vibrational modes correspond to quantized energy levels; IR spectroscopy uses this to identify functional groups."
-      },
-      {
-        fact: "Ozone (O₃) protects from UV radiation.",
-        detail: "Ozone absorbs UV‑B and UV‑C, preventing DNA damage in living organisms at Earth’s surface."
-      },
-      {
-        fact: "Catalytic converters reduce emissions.",
-        detail: "They use platinum‑group metals to catalyze CO → CO₂, NOₓ → N₂ + O₂, and unburned hydrocarbons → CO₂ + H₂O."
-      },
-      {
-        fact: "Teflon is non-stick due to fluorine.",
-        detail: "PTFE’s carbon‑fluorine bonds create a low‑energy surface with minimal adhesion to other materials."
-      },
-      {
-        fact: "Carbon dioxide is a greenhouse gas.",
-        detail: "CO₂ absorbs infrared radiation emitted by Earth, trapping heat and contributing to the greenhouse effect."
-      },
-      {
-        fact: "Laughing gas is nitrous oxide (N₂O).",
-        detail: "N₂O acts as an analgesic and anesthetic by modulating neurotransmitter release in the central nervous system."
-      },
-      {
-        fact: "Sodium and chlorine are explosive and toxic alone.",
-        detail: "Na violently reacts with water; Cl₂ gas is a pulmonary irritant. Together they form stable NaCl essential for life."
-      },
-      {
-        fact: "Combined, they form edible salt.",
-        detail: "Na⁺ and Cl⁻ ions arrange in a cubic lattice, creating an ionic solid that’s crucial for cellular function and seasoning."
-      },
-      {
-        fact: "Chemistry is central to life.",
-        detail: "All biological processes—from energy production to replication—are governed by chemical reactions and molecular interactions."
-      },
-      {
-        fact: "The smell of rain is ozone and petrichor.",
-        detail: "Petrichor arises from plant oils released by soil bacteria when rain hits ground; ozone from lightning adds a sharp scent."
-      },
-      {
-        fact: "Glycerin is sweet and viscous.",
-        detail: "Glycerol’s three hydroxyl groups make it hygroscopic and give it a sweet taste; used in pharmaceuticals and cosmetics."
-      },
-      {
-        fact: "Silicon is the backbone of electronics.",
-        detail: "Silicon’s semiconducting properties and ability to form a stable oxide make it ideal for transistors and microchips."
-      },
-      {
-        fact: "Organic chemistry studies carbon compounds.",
-        detail: "This field explores structures, reactions, and syntheses of carbon‑based molecules, underpinning pharmaceuticals and materials."
-      },
-      {
-        fact: "Mendeleev predicted elements before discovery.",
-        detail: "He arranged known elements by atomic weight and chemical properties, leaving gaps for undiscovered elements and forecasting their characteristics."
-      },
-      {
-        fact: "pH 7 is neutral.",
-        detail: "At pH 7, hydrogen‑ion and hydroxide‑ion concentrations are equal (10⁻⁷ M), indicating neither acidic nor basic solution."
-      },
-      {
-        fact: "Acids turn blue litmus red.",
-        detail: "The dye in litmus changes structure when protonated, shifting its absorbance spectrum and color."
-      },
-      {
-        fact: "Bases turn red litmus blue.",
-        detail: "Bases remove protons from the litmus molecule, altering its structure and optical properties toward blue."
-      },
-      {
-        fact: "Water has high specific heat capacity.",
-        detail: "Because of extensive hydrogen bonding, water absorbs large amounts of heat before its temperature rises appreciably, stabilizing climate and organisms."
-      },
-      {
-        fact: "Ethanol kills bacteria by denaturing proteins.",
-        detail: "Alcohol disrupts membrane integrity and unfolds proteins, rendering bacterial cells nonviable."
-      },
-      {
-        fact: "Nitric acid dissolves metals.",
-        detail: "As a strong oxidizer and acid, HNO₃ converts metals into nitrate salts, often releasing NO₂ gas."
-      },
-      {
-        fact: "Aqua regia dissolves gold and platinum.",
-        detail: "A 3:1 mixture of HCl and HNO₃ forms chloroauric acid complexes that solubilize gold and platinum, which resist ordinary acids."
-      },
-      {
-        fact: "Fireworks involve metal salts.",
-        detail: "Different metal cations emit characteristic colors when heated: strontium (red), barium (green), copper (blue), sodium (yellow)."
-      },
-      {
-        fact: "Soap bubbles are thin water films.",
-        detail: "A soap bubble is a water layer sandwiched between two surfactant monolayers that stabilize the film and produce iridescence."
-      },
-      {
-        fact: "Thermite reactions burn extremely hot.",
-        detail: "A mixture of aluminum powder and metal oxide (e.g., Fe₂O₃) undergoes a highly exothermic redox reaction, producing molten iron at ~2500 °C."
-      },
-      {
-        fact: "DNA contains carbon, hydrogen, nitrogen, oxygen, and phosphorus.",
-        detail: "Its backbone is alternating sugar (carbon, hydrogen, oxygen) and phosphate (phosphorus, oxygen) groups, with nitrogenous bases attached."
-      },
-      {
-        fact: "Baking soda is sodium bicarbonate.",
-        detail: "NaHCO₃ releases CO₂ when heated or acidified, acting as a leavening agent in baking and a mild abrasive in cleaning."
-      },
-      {
-        fact: "Corrosion is a slow chemical change.",
-        detail: "Metals oxidize over time in moist environments, forming oxides or hydroxides that degrade structural integrity."
-      },
-      {
-        fact: "Explosion is a fast chemical change.",
-        detail: "Rapid exothermic reactions generate large volumes of gas and heat, producing shock waves capable of destruction."
-      },
-      {
-        fact: "Iron + sulfur → iron sulfide (exothermic).",
-        detail: "When heated, Fe and S react to form FeS, releasing heat and forming a black crystalline solid."
-      },
-      {
-        fact: "Bleach can react dangerously with ammonia.",
-        detail: "Mixing NaClO with NH₃ produces toxic chloramine gases (NH₂Cl, NHCl₂) that irritate eyes and lungs."
-      },
-      {
-        fact: "Hydrogen is the most abundant element in the universe.",
-        detail: "≈75% of baryonic mass, hydrogen powers stars via nuclear fusion and forms the basis of cosmic chemistry."
-      },
-      {
-        fact: "Phosphorus glows in the dark.",
-        detail: "White phosphorus oxidizes slowly in air, forming excited PO species that emit a faint greenish glow (chemiluminescence)."
-      },
-      {
-        fact: "Every element heavier than iron forms in stars.",
-        detail: "Elements beyond Fe require energy input in supernova nucleosynthesis or neutron capture processes, occurring in dying stars."
-      },
-      {
-        fact: "Chemistry explains the color of gemstones.",
-        detail: "Trace impurities and crystal-field effects alter light absorption in minerals: Cr³⁺ → ruby red; Fe²⁺/Ti⁴⁺ → sapphire blue."
-      },
-      {
-        fact: "Chocolate contains theobromine.",
-        detail: "An alkaloid structurally similar to caffeine, theobromine stimulates the nervous system and dilates blood vessels."
-      },
-      {
-        fact: "Caffeine is a stimulant alkaloid.",
-        detail: "Caffeine blocks adenosine receptors in the brain, reducing drowsiness and increasing alertness."
-      },
-      {
-        fact: "Lipids are non-polar molecules.",
-        detail: "Comprised of long hydrocarbon chains or rings, lipids are hydrophobic and serve as energy storage and membrane components."
-      },
-      {
-        fact: "Water’s hydrogen bonding gives it unique properties.",
-        detail: "Extensive H‑bond network leads to high boiling point, surface tension, and the fact that ice floats because its lattice is more open."
-      },
-      {
-        fact: "Honey never spoils due to low water activity.",
-        detail: "Its high sugar concentration creates osmotic pressure that inhibits microbial growth; acidity and enzymes also help preserve it."
-      },
-      {
-        fact: "Airbags deploy with rapid decomposition of sodium azide.",
-        detail: "Under electrical ignition, NaN₃ → Na + N₂. The nitrogen gas inflates the bag in milliseconds; sodium reacts further to form harmless salts."
-      },
-      {
-        fact: "Protein structure determines function.",
-        detail: "Amino acid sequence folds via hydrogen bonds, hydrophobic interactions, and disulfide bridges into specific 3D shapes essential for activity."
-      },
-      {
-        fact: "DNA mutations involve chemical changes.",
-        detail: "Base substitutions, insertions, or deletions alter nucleotide chemistry, potentially changing encoded proteins and leading to disease or evolution."
-      },
-      {
-        fact: "Carbonates react with acids to release CO₂.",
-        detail: "M²⁺CO₃ + 2 H⁺ → M²⁺ + CO₂(g) + H₂O. This gas evolution is used in geology (karst formation) and baking."
-      },
-      {
-        fact: "Baking causes chemical and physical changes.",
-        detail: "Maillard reactions between amino acids and sugars brown crusts; heat denatures proteins and gelatinizes starch, changing texture."
-      },
-      {
-        fact: "Metals conduct electricity due to free electrons.",
-        detail: "In metallic bonds electrons delocalize and move freely under electric fields, carrying current with minimal resistance."
-      },
-      {
-        fact: "Acids etch glass over time.",
-        detail: "Fluoride ions react with silicon dioxide: SiO₂ + 6 F⁻ + 4 H⁺ → SiF₆²⁻ + 2 H₂O, gradually dissolving glass surfaces."
-      },
-      {
-        fact: "Noble gases glow under electricity.",
-        detail: "Applied voltage excites electrons which emit characteristic colors when returning to ground state—used in neon signs."
-      },
-      {
-        fact: "Superconductors have zero resistance.",
-        detail: "Below a critical temperature, certain materials exhibit Cooper pairing of electrons, allowing lossless current flow and magnetic levitation."
-      },
-      {
-        fact: "The smell of garlic is sulfur compounds.",
-        detail: "Allicin and related thiosulfinates form when garlic cells rupture, producing pungent volatile sulfur molecules."
-      },
-      {
-        fact: "Proteins are polymers of amino acids.",
-        detail: "Peptide bonds link amino acids in sequences defined by mRNA; folding yields structures from α-helices to β-sheets driven by side-chain interactions."
-      },
-      {
-        fact: "Chemiluminescence produces light without heat.",
-        detail: "Chemical reactions generate excited-state intermediates that emit photons on returning to ground state (e.g., glow sticks)."
-      },
-      {
-        fact: "Magnesium burns with a white flame.",
-        detail: "Mg + ½ O₂ → MgO releases intense white light; used in flares and fireworks for brilliant illumination."
-      },
-      {
-        fact: "Water has surface tension due to cohesion.",
-        detail: "Hydrogen bonds between surface molecules create a ‘skin’ that resists external force, allowing insects to walk on water."
-      },
-      {
-        fact: "Oil floats on water due to lower density.",
-        detail: "Hydrocarbon chains are less dense and immiscible with polar water, causing oils to layer on top."
-      },
-      {
-        fact: "Gases diffuse faster at higher temperatures.",
-        detail: "Increased thermal energy raises molecular speed, enhancing mixing and diffusion rates according to Graham’s law."
-      },
-      {
-        fact: "Carbon dating measures C‑14 decay.",
-        detail: "Living organisms incorporate C‑14. After death, C‑14 decays (t½ ≈ 5730 y). Measuring the ratio of C‑14 to C‑12 dates organic remains."
-      },
-      {
-        fact: "Helium is used in cryogenics.",
-        detail: "Liquid helium (boiling at 4.2 K) cools superconducting magnets and low‑temperature experiments near absolute zero."
-      },
-      {
-        fact: "LED lights rely on semiconductors.",
-        detail: "Electroluminescence in p–n junctions emits photons when electrons recombine with holes, with wavelength determined by band‑gap energy."
-      },
-      {
-        fact: "A solution is a homogeneous mixture.",
-        detail: "One substance (solute) is molecularly dispersed in another (solvent), forming a single-phase system (e.g., salt water)."
-      },
-      {
-        fact: "Colloids scatter light (Tyndall effect).",
-        detail: "Particles sized 1–1000 nm are too big for true solutions but small enough to stay suspended, scattering light beams visibly."
-      },
-      {
-        fact: "The Haber process synthesizes ammonia.",
-        detail: "N₂ + 3 H₂ ⇌ 2 NH₃ at 200–300 atm, 400–500 °C, using an iron‑based catalyst—crucial for fertilizer production."
-      },
-      {
-        fact: "Ice has a crystalline structure.",
-        detail: "Each water molecule forms four hydrogen bonds in a hexagonal lattice, creating open spaces that make ice less dense than water."
-      },
-      {
-        fact: "Catalysts are crucial in industrial chemistry.",
-        detail: "They lower activation energies, increase yields, and reduce energy requirements in processes like Haber and Contact for sulfuric acid."
-      },
-      {
-        fact: "Free radicals are highly reactive species.",
-        detail: "Atoms or molecules with unpaired electrons react rapidly, initiating chain reactions in polymerization, combustion, and biological damage."
-      },
-      {
-        fact: "Buffer solutions resist pH change.",
-        detail: "Mixtures of weak acids and their conjugate bases neutralize added H⁺/OH⁻, maintaining near‑constant pH within a specific range."
-      },
-      {
-        fact: "Hydrogen bonding is why ice floats.",
-        detail: "In solid water, each molecule bonds to four neighbors in an open hexagonal network, making ice ~9% less dense than liquid water."
-      },
-      {
-        fact: "Biochemistry bridges biology and chemistry.",
-        detail: "It studies chemical processes in living organisms—from enzyme catalysis to signal transduction and genetic regulation."
-      },
-      {
-        fact: "Fats can be saturated or unsaturated.",
-        detail: "Saturated fats have single C–C bonds (solid at RT), while unsaturated contain C=C double bonds (liquid oils) affecting nutritional and physical properties."
-      },
-      {
-        fact: "Ethene is a plant hormone.",
-        detail: "C₂H₄ gas regulates fruit ripening, leaf abscission, and stress responses by binding to specific receptor proteins."
-      },
-      {
-        fact: "Plastics are synthetic polymers.",
-        detail: "Produced by polymerization of monomers like ethylene or styrene, plastics can be engineered for flexibility, toughness, or heat resistance."
-      },
-      {
-        fact: "Vitamin D is synthesized in the skin via UV.",
-        detail: "UVB photons convert 7-dehydrocholesterol to previtamin D₃, which isomerizes to vitamin D₃, essential for calcium homeostasis."
-      },
-      {
-        fact: "All acids contain hydrogen.",
-        detail: "They release protons (H⁺) in solution—whether binary acids like HCl or oxyacids like H₂SO₄—defining their acidic behavior."
-      },
-      {
-        fact: "Nitrogen is essential for amino acids.",
-        detail: "Each amino acid contains an amine group (–NH₂), providing the nitrogen critical for protein and nucleotide biosynthesis."
-      },
-      {
-        fact: "Electroplating coats metal with another metal.",
-        detail: "Using an electrolytic cell, metal ions are reduced onto a cathode surface, improving corrosion resistance and aesthetics."
-      },
-      {
-        fact: "Glass is an amorphous solid.",
-        detail: "Silica forms a rigid network without long‑range order, combining properties of solids and supercooled liquids."
-      },
-      {
-        fact: "Detergents break grease using micelles.",
-        detail: "Hydrophobic tails surround oil droplets while hydrophilic heads face water, forming micelles that wash away grease."
-      },
-      {
-        fact: "Oxidation can occur without oxygen.",
-        detail: "Oxidation is loss of electrons—other elements or compounds (like chlorine or fluorine) can serve as oxidizers in redox reactions."
-      },
-      {
-        fact: "Chemical equilibrium is dynamic.",
-        detail: "At equilibrium forward and reverse reaction rates are equal—concentrations stay constant while molecules continue reacting."
-      },
-      {
-        fact: "The periodic table is the chemist’s best friend.",
-        detail: "It orders elements by atomic number and recurring chemical properties, enabling prediction of reactivity, bonding, and trends."
-      }
-    ];
+<div class="fact-box" id="factBox">Loading cool chemistry facts...</div>
 
-    const ul = document.getElementById('factsList');
-    facts.forEach(({fact, detail}) => {
-      const li = document.createElement('li');
-      li.textContent = fact;
-      const d  = document.createElement('div');
-      d.className = 'detail';
-      d.textContent = detail;
-      li.addEventListener('click', () => d.classList.toggle('show'));
-      ul.appendChild(li);
-      ul.appendChild(d);
+<!-- REPLACED UNDER‑CONSTRUCTION DIV WITH ENHANCED SECTION BELOW -->
+<section class="construction">
+  <svg class="gear" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="10" fill="#fff"/>
+    <path fill="none" stroke="#fff" stroke-width="8" d="
+      M50 2 L50 20 M50 98 L50 80 M2 50 L20 50 M98 50 L80 50
+      M20 20 L30 30 M80 80 L70 70 M20 80 L30 70 M80 20 L70 30
+    "/>
+  </svg>
+  <h2>Chemovik – Under Construction</h2>
+  <p>Come back soon for something awesome!</p>
+</section>
+
+<div class="footer">
+  © 2025 Sankalp Dubey – MyChemovik. All rights reserved.
+</div>
+
+<script>
+  // Background Animated Molecules (Canvas)
+  const canvas = document.getElementById("chemCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 4 + 2,
+      dx: (Math.random() - 0.5) * 1.5,
+      dy: (Math.random() - 0.5) * 1.5
     });
-  </script>
+  }
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "#80dfff";
+      ctx.fill();
+    });
+  }
+  function updateParticles() {
+    particles.forEach(p => {
+      p.x += p.dx; p.y += p.dy;
+      if (p.x + p.r > canvas.width || p.x - p.r < 0) p.dx *= -1;
+      if (p.y + p.r > canvas.height || p.y - p.r < 0) p.dy *= -1;
+    });
+  }
+  function animate() {
+    drawParticles();
+    updateParticles();
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Chemistry Fun Facts
+  const facts = [
+    "Water expands when it freezes.",
+    "Helium can escape Earth’s gravity.",
+    "Diamond and graphite are both pure carbon.",
+    "Mercury is the only liquid metal at room temperature.",
+    "Astatine is so rare, only a few grams exist on Earth.",
+    "Fluorine is the most reactive element.",
+    "Salt lowers the freezing point of water.",
+    "Liquid nitrogen boils at -196°C.",
+    "Gold is the most malleable metal.",
+    "Hydrogen is the lightest element.",
+    "Radioactive bananas exist (potassium-40).",
+    "Dry ice is solid CO₂.",
+    "Rusting is a redox reaction.",
+    "Oxygen is paramagnetic.",
+    "Chemical reactions release or absorb energy.",
+    "Superacids can dissolve glass.",
+    "Cesium explodes in water.",
+    "Noble gases rarely form compounds.",
+    "The pH scale is logarithmic.",
+    "Acids donate H⁺ ions.",
+    "Bases accept H⁺ ions.",
+    "Ant bites inject formic acid.",
+    "Vinegar is acetic acid.",
+    "Soap molecules have polar and non-polar ends.",
+    "Nitroglycerin is explosive yet used in medicine.",
+    "TNT stands for trinitrotoluene.",
+    "Graphene is a single layer of carbon atoms.",
+    "Polymers are long chains of repeating units.",
+    "PVC stands for polyvinyl chloride.",
+    "Nylon was the first synthetic fiber.",
+    "Ammonia has a trigonal pyramidal shape.",
+    "Benzene has a ring of 6 carbon atoms.",
+    "Aspirin is derived from willow bark.",
+    "Vitamin C is ascorbic acid.",
+    "Hydrogen peroxide fizzes on wounds.",
+    "Mole is 6.022 × 10²³ particles.",
+    "Allotropes are different forms of the same element.",
+    "Ionic bonds involve electron transfer.",
+    "Covalent bonds share electrons.",
+    "Metallic bonds create electron \"sea.\"",
+    "Sulfur smells like rotten eggs.",
+    "CO binds stronger than O₂ to hemoglobin.",
+    "Alchemy led to modern chemistry.",
+    "Blood tastes metallic due to iron.",
+    "Gases have no fixed volume or shape.",
+    "Liquids have fixed volume but no shape.",
+    "Solids have fixed volume and shape.",
+    "Exothermic reactions release heat.",
+    "Endothermic reactions absorb heat.",
+    "Enzymes speed up reactions in the body.",
+    "Catalysts are not consumed in reactions.",
+    "pH of stomach acid is 1.5 to 3.5.",
+    "Buckyballs are spherical carbon molecules.",
+    "DNA is a polymer of nucleotides.",
+    "Penicillin was the first true antibiotic.",
+    "Ethanol can be used as fuel.",
+    "Air is mostly nitrogen.",
+    "CO₂ causes soda to fizz.",
+    "Electrolysis splits water into H₂ and O₂.",
+    "Redox = reduction + oxidation.",
+    "Noble metals resist corrosion.",
+    "Silver tarnishes but gold doesn’t.",
+    "Liquid oxygen is pale blue.",
+    "Pure sulfur burns with a blue flame.",
+    "Acetone is used in nail polish remover.",
+    "Soap and detergent are surfactants.",
+    "Combustion needs fuel, oxygen, and heat.",
+    "UV light can cause skin cancer via free radicals.",
+    "Chlorophyll is magnesium-based.",
+    "Hemoglobin contains iron.",
+    "Enzymes lower activation energy.",
+    "Molecules vibrate at specific frequencies.",
+    "Ozone (O₃) protects from UV radiation.",
+    "Catalytic converters reduce emissions.",
+    "Teflon is non-stick due to fluorine.",
+    "Carbon dioxide is a greenhouse gas.",
+    "Laughing gas is nitrous oxide (N₂O).",
+    "Sodium and chlorine are explosive and toxic alone.",
+    "Combined, they form edible salt.",
+    "Chemistry is central to life.",
+    "The smell of rain is ozone and petrichor.",
+    "Glycerin is sweet and viscous.",
+    "Silicon is the backbone of electronics.",
+    "Organic chemistry studies carbon compounds.",
+    "Mendeleev predicted elements before discovery.",
+    "pH 7 is neutral.",
+    "Acids turn blue litmus red.",
+    "Bases turn red litmus blue.",
+    "Water has high specific heat capacity.",
+    "Ethanol kills bacteria by denaturing proteins.",
+    "Nitric acid dissolves metals.",
+    "Aqua regia dissolves gold and platinum.",
+    "Fireworks involve metal salts.",
+    "Soap bubbles are thin water films.",
+    "Thermite reactions burn extremely hot.",
+    "DNA contains carbon, hydrogen, nitrogen, oxygen, and phosphorus.",
+    "Baking soda is sodium bicarbonate.",
+    "Corrosion is a slow chemical change.",
+    "Explosion is a fast chemical change.",
+    "Iron + sulfur → iron sulfide (exothermic).",
+    "Bleach can react dangerously with ammonia.",
+    "Hydrogen is the most abundant element in the universe.",
+    "Phosphorus glows in the dark.",
+    "Every element heavier than iron forms in stars.",
+    "Chemistry explains the color of gemstones.",
+    "Chocolate contains theobromine.",
+    "Caffeine is a stimulant alkaloid.",
+    "Lipids are non-polar molecules.",
+    "Water’s hydrogen bonding gives it unique properties.",
+    "Honey never spoils due to low water activity.",
+    "Airbags deploy with rapid decomposition of sodium azide.",
+    "Protein structure determines function.",
+    "DNA mutations involve chemical changes.",
+    "Carbonates react with acids to release CO₂.",
+    "Baking causes chemical and physical changes.",
+    "Metals conduct electricity due to free electrons.",
+    "Acids etch glass over time.",
+    "Noble gases glow under electricity.",
+    "Superconductors have zero resistance.",
+    "The smell of garlic is sulfur compounds.",
+    "Proteins are polymers of amino acids.",
+    "Chemiluminescence produces light without heat.",
+    "Magnesium burns with white flame.",
+    "Water has surface tension due to cohesion.",
+    "Oil floats on water due to lower density.",
+    "Gases diffuse faster at higher temperatures.",
+    "Carbon dating measures C-14 decay.",
+    "Helium is used in cryogenics.",
+    "LED lights rely on semiconductors.",
+    "A solution is a homogeneous mixture.",
+    "Colloids scatter light (Tyndall effect).",
+    "The Haber process synthesizes ammonia.",
+    "Ice has a crystalline structure.",
+    "Catalysts are crucial in industrial chemistry.",
+    "Free radicals are highly reactive species.",
+    "Buffer solutions resist pH change.",
+    "Hydrogen bonding is why ice floats.",
+    "Biochemistry bridges biology and chemistry.",
+    "Fats can be saturated or unsaturated.",
+    "Ethene is a plant hormone.",
+    "Plastics are synthetic polymers.",
+    "Vitamin D is synthesized in the skin via UV.",
+    "All acids contain hydrogen."
+  ];
+
+  const factBox = document.getElementById("factBox");
+  let factIndex = 0;
+
+  function showNextFact() {
+    factBox.innerHTML = facts[factIndex];
+    factIndex = (factIndex + 1) % facts.length;
+  }
+
+  showNextFact();
+  setInterval(showNextFact, 5000);
+
+  // Adjust canvas on resize
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
 
 </body>
 </html>
-
 
