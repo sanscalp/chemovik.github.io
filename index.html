@@ -2,338 +2,151 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chemovik</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemovik | Home</title>
   <style>
     body {
       margin: 0;
-      background-color: #44422F;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #fffbe6;
-      overflow-x: hidden;
+      background-color: #484533; /* exact color from image */
+      color: #ffffff;
     }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
     header {
+      background-color: #3b392a;
+      padding: 30px 20px;
       text-align: center;
-      padding: 60px 20px 20px;
+      animation: fadeIn 1.2s ease-in;
     }
-
-    h1 {
-      font-size: 4rem;
-      animation: pulse 4s infinite;
+    header h1 {
+      margin: 0;
+      font-size: 2.7rem;
     }
-
-    @keyframes pulse {
-      0% { opacity: 0.7; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.05); }
-      100% { opacity: 0.7; transform: scale(1); }
+    nav {
+      margin-top: 15px;
     }
-
-    .fact-box {
-      max-width: 700px;
-      margin: 50px auto;
-      padding: 30px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px dashed #ccc;
-      border-radius: 15px;
-      text-align: center;
-      font-size: 1.2rem;
+    nav a {
+      color: #ffffff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
     }
-
-    .footer {
-      text-align: center;
-      font-size: 1rem;
-      padding: 20px;
-      margin-top: 100px;
-      color: #ccc;
+    nav a:hover {
+      color: #b2d235;
     }
-
-    /* Under‑Construction Section */
-    .construction {
-      background-color: #44422F;
+    main {
       padding: 60px 20px;
       text-align: center;
-      margin-top: 4rem;
-      animation: fadeIn 1.2s ease-out;
+    }
+    .hero {
+      max-width: 700px;
+      margin: auto;
+      animation: fadeInUp 1s ease-in;
+    }
+    .hero h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .section {
+      padding: 60px 20px;
+      background-color: #3b392a;
+      animation: fadeInUp 1.2s ease-in;
+    }
+    .section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .section img {
+      max-width: 80%;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+    .construction {
+      background-color: #2f2e23;
+      padding: 60px 20px;
+      text-align: center;
     }
     .gear {
-      width: 100px;
-      height: 100px;
-      animation: spin 4s linear infinite;
-      margin-bottom: 1rem;
+      width: 80px;
+      height: 80px;
+      animation: rotate 2s linear infinite;
+      margin-bottom: 20px;
     }
-    .construction h2 {
-      font-size: 2rem;
-      color: #FFD700;
-      margin: .5rem 0;
-      text-transform: uppercase;
-      animation: flicker 3s infinite;
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
-    .construction p {
-      font-size: 1.1rem;
-      opacity: 0;
-      color: #eee;
-      animation: fadeInText 2s ease-out 0.5s forwards;
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #2f2e23;
+      font-size: 0.9rem;
     }
-
-    /* Keyframes for Under‑Construction */
     @keyframes fadeIn {
       from { opacity: 0; }
-      to   { opacity: 1; }
+      to { opacity: 1; }
     }
-    @keyframes fadeInText {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 0.8; transform: translateY(0); }
-    }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      50%      { opacity: 0.3; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-
-<canvas id="chemCanvas"></canvas>
-
-<header>
-  <h1>🔬 Chemovik</h1>
-  <p>Explore Chemistry with Curiosity & Creativity</p>
-</header>
-
-<div class="fact-box" id="factBox">Loading cool chemistry facts...</div>
-
-<!-- REPLACED UNDER‑CONSTRUCTION DIV WITH ENHANCED SECTION BELOW -->
-<section class="construction">
-  <svg class="gear" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="10" fill="#fff"/>
-    <path fill="none" stroke="#fff" stroke-width="8" d="
-      M50 2 L50 20 M50 98 L50 80 M2 50 L20 50 M98 50 L80 50
-      M20 20 L30 30 M80 80 L70 70 M20 80 L30 70 M80 20 L70 30
-    "/>
-  </svg>
-  <h2>Chemovik – Under Construction</h2>
-  <p>Come back soon for something awesome!</p>
-</section>
-
-<div class="footer">
-  © 2025 Sankalp Dubey – Chemovik. All rights reserved.
-</div>
-
-<script>
-  // Background Animated Molecules (Canvas)
-  const canvas = document.getElementById("chemCanvas");
-  const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let particles = [];
-  for (let i = 0; i < 60; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 4 + 2,
-      dx: (Math.random() - 0.5) * 1.5,
-      dy: (Math.random() - 0.5) * 1.5
-    });
-  }
-  function drawParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = "#80dfff";
-      ctx.fill();
-    });
-  }
-  function updateParticles() {
-    particles.forEach(p => {
-      p.x += p.dx; p.y += p.dy;
-      if (p.x + p.r > canvas.width || p.x - p.r < 0) p.dx *= -1;
-      if (p.y + p.r > canvas.height || p.y - p.r < 0) p.dy *= -1;
-    });
-  }
-  function animate() {
-    drawParticles();
-    updateParticles();
-    requestAnimationFrame(animate);
-  }
-  animate();
-
-  // Chemistry Fun Facts
-  const facts = [
-    "Water expands when it freezes.",
-    "Helium can escape Earth’s gravity.",
-    "Diamond and graphite are both pure carbon.",
-    "Mercury is the only liquid metal at room temperature.",
-    "Astatine is so rare, only a few grams exist on Earth.",
-    "Fluorine is the most reactive element.",
-    "Salt lowers the freezing point of water.",
-    "Liquid nitrogen boils at -196°C.",
-    "Gold is the most malleable metal.",
-    "Hydrogen is the lightest element.",
-    "Radioactive bananas exist (potassium-40).",
-    "Dry ice is solid CO₂.",
-    "Rusting is a redox reaction.",
-    "Oxygen is paramagnetic.",
-    "Chemical reactions release or absorb energy.",
-    "Superacids can dissolve glass.",
-    "Cesium explodes in water.",
-    "Noble gases rarely form compounds.",
-    "The pH scale is logarithmic.",
-    "Acids donate H⁺ ions.",
-    "Bases accept H⁺ ions.",
-    "Ant bites inject formic acid.",
-    "Vinegar is acetic acid.",
-    "Soap molecules have polar and non-polar ends.",
-    "Nitroglycerin is explosive yet used in medicine.",
-    "TNT stands for trinitrotoluene.",
-    "Graphene is a single layer of carbon atoms.",
-    "Polymers are long chains of repeating units.",
-    "PVC stands for polyvinyl chloride.",
-    "Nylon was the first synthetic fiber.",
-    "Ammonia has a trigonal pyramidal shape.",
-    "Benzene has a ring of 6 carbon atoms.",
-    "Aspirin is derived from willow bark.",
-    "Vitamin C is ascorbic acid.",
-    "Hydrogen peroxide fizzes on wounds.",
-    "Mole is 6.022 × 10²³ particles.",
-    "Allotropes are different forms of the same element.",
-    "Ionic bonds involve electron transfer.",
-    "Covalent bonds share electrons.",
-    "Metallic bonds create electron \"sea.\"",
-    "Sulfur smells like rotten eggs.",
-    "CO binds stronger than O₂ to hemoglobin.",
-    "Alchemy led to modern chemistry.",
-    "Blood tastes metallic due to iron.",
-    "Gases have no fixed volume or shape.",
-    "Liquids have fixed volume but no shape.",
-    "Solids have fixed volume and shape.",
-    "Exothermic reactions release heat.",
-    "Endothermic reactions absorb heat.",
-    "Enzymes speed up reactions in the body.",
-    "Catalysts are not consumed in reactions.",
-    "pH of stomach acid is 1.5 to 3.5.",
-    "Buckyballs are spherical carbon molecules.",
-    "DNA is a polymer of nucleotides.",
-    "Penicillin was the first true antibiotic.",
-    "Ethanol can be used as fuel.",
-    "Air is mostly nitrogen.",
-    "CO₂ causes soda to fizz.",
-    "Electrolysis splits water into H₂ and O₂.",
-    "Redox = reduction + oxidation.",
-    "Noble metals resist corrosion.",
-    "Silver tarnishes but gold doesn’t.",
-    "Liquid oxygen is pale blue.",
-    "Pure sulfur burns with a blue flame.",
-    "Acetone is used in nail polish remover.",
-    "Soap and detergent are surfactants.",
-    "Combustion needs fuel, oxygen, and heat.",
-    "UV light can cause skin cancer via free radicals.",
-    "Chlorophyll is magnesium-based.",
-    "Hemoglobin contains iron.",
-    "Enzymes lower activation energy.",
-    "Molecules vibrate at specific frequencies.",
-    "Ozone (O₃) protects from UV radiation.",
-    "Catalytic converters reduce emissions.",
-    "Teflon is non-stick due to fluorine.",
-    "Carbon dioxide is a greenhouse gas.",
-    "Laughing gas is nitrous oxide (N₂O).",
-    "Sodium and chlorine are explosive and toxic alone.",
-    "Combined, they form edible salt.",
-    "Chemistry is central to life.",
-    "The smell of rain is ozone and petrichor.",
-    "Glycerin is sweet and viscous.",
-    "Silicon is the backbone of electronics.",
-    "Organic chemistry studies carbon compounds.",
-    "Mendeleev predicted elements before discovery.",
-    "pH 7 is neutral.",
-    "Acids turn blue litmus red.",
-    "Bases turn red litmus blue.",
-    "Water has high specific heat capacity.",
-    "Ethanol kills bacteria by denaturing proteins.",
-    "Nitric acid dissolves metals.",
-    "Aqua regia dissolves gold and platinum.",
-    "Fireworks involve metal salts.",
-    "Soap bubbles are thin water films.",
-    "Thermite reactions burn extremely hot.",
-    "DNA contains carbon, hydrogen, nitrogen, oxygen, and phosphorus.",
-    "Baking soda is sodium bicarbonate.",
-    "Corrosion is a slow chemical change.",
-    "Explosion is a fast chemical change.",
-    "Iron + sulfur → iron sulfide (exothermic).",
-    "Bleach can react dangerously with ammonia.",
-    "Hydrogen is the most abundant element in the universe.",
-    "Phosphorus glows in the dark.",
-    "Every element heavier than iron forms in stars.",
-    "Chemistry explains the color of gemstones.",
-    "Chocolate contains theobromine.",
-    "Caffeine is a stimulant alkaloid.",
-    "Lipids are non-polar molecules.",
-    "Water’s hydrogen bonding gives it unique properties.",
-    "Honey never spoils due to low water activity.",
-    "Airbags deploy with rapid decomposition of sodium azide.",
-    "Protein structure determines function.",
-    "DNA mutations involve chemical changes.",
-    "Carbonates react with acids to release CO₂.",
-    "Baking causes chemical and physical changes.",
-    "Metals conduct electricity due to free electrons.",
-    "Acids etch glass over time.",
-    "Noble gases glow under electricity.",
-    "Superconductors have zero resistance.",
-    "The smell of garlic is sulfur compounds.",
-    "Proteins are polymers of amino acids.",
-    "Chemiluminescence produces light without heat.",
-    "Magnesium burns with white flame.",
-    "Water has surface tension due to cohesion.",
-    "Oil floats on water due to lower density.",
-    "Gases diffuse faster at higher temperatures.",
-    "Carbon dating measures C-14 decay.",
-    "Helium is used in cryogenics.",
-    "LED lights rely on semiconductors.",
-    "A solution is a homogeneous mixture.",
-    "Colloids scatter light (Tyndall effect).",
-    "The Haber process synthesizes ammonia.",
-    "Ice has a crystalline structure.",
-    "Catalysts are crucial in industrial chemistry.",
-    "Free radicals are highly reactive species.",
-    "Buffer solutions resist pH change.",
-    "Hydrogen bonding is why ice floats.",
-    "Biochemistry bridges biology and chemistry.",
-    "Fats can be saturated or unsaturated.",
-    "Ethene is a plant hormone.",
-    "Plastics are synthetic polymers.",
-    "Vitamin D is synthesized in the skin via UV.",
-    "All acids contain hydrogen."
-  ];
-
-  const factBox = document.getElementById("factBox");
-  let factIndex = 0;
-
-  function showNextFact() {
-    factBox.innerHTML = facts[factIndex];
-    factIndex = (factIndex + 1) % facts.length;
-  }
-
-  showNextFact();
-  setInterval(showNextFact, 5000);
-
-  // Adjust canvas on resize
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-</script>
-
+  <header>
+    <h1>Chemovik</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#project">BioSorb</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h2>Converting Waste into Breathable Futures</h2>
+      <p>
+        Welcome to Chemovik, an initiative focused on developing sustainable biosorbents from industrial and agricultural waste. Our mission: clean air, clean water, cleaner future.
+      </p>
+    </section>
+    <section class="section" id="about">
+      <h3>About Chemovik</h3>
+      <p>Chemovik is a student-led science initiative exploring sustainable chemistry-based solutions for real-world problems. Founded with the goal of innovation from waste, it focuses on using biosorption as a purification method. We believe in accessible science, youth-driven ideas, and solving tomorrow’s problems with today’s waste.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Green_recycling_icon.svg/768px-Green_recycling_icon.svg.png" alt="Recycling Icon" />
+    </section>
+    <section class="section" id="project">
+      <h3>What is BioSorb?</h3>
+      <p>BioSorb is a project that turns agricultural and industrial waste into powerful biosorbents — natural materials that can clean water and air by absorbing harmful particles. It's eco-friendly, low-cost, and scalable. We’re currently prototyping small-scale models to demonstrate their efficiency in real environments.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Water_filtering.gif" alt="Water Filtering Animation" />
+    </section>
+    <section class="section" id="certificates">
+      <h3>Certificates</h3>
+      <p>From Wix development to project management, our credentials show a wide array of interdisciplinary learning. These certificates back our vision with structured knowledge. (Links and previews coming soon!)</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Certificate_Template.svg/1024px-Certificate_Template.svg.png" alt="Certificate Icon" />
+    </section>
+    <section class="section" id="contact">
+      <h3>Contact</h3>
+      <p>Email us at <a href="mailto:chemoviklabs@gmail.com" style="color: #b2d235;">chemoviklabs@gmail.com</a> or follow us on Instagram @chemovik</p>
+    </section>
+    <section class="construction">
+      <svg class="gear" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="10" fill="#fff"/>
+        <path fill="none" stroke="#fff" stroke-width="8" d="
+          M50 2 L50 20 M50 98 L50 80 M2 50 L20 50 M98 50 L80 50
+          M20 20 L30 30 M80 80 L70 70 M20 80 L30 70 M80 20 L70 30
+        "/>
+      </svg>
+      <h2>Chemovik – Under Construction</h2>
+      <p>Come back soon for something awesome!</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Chemovik. All rights reserved.</p>
+  </footer>
 </body>
 </html>
