@@ -5,12 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chemovik | Home</title>
   <style>
+    /* ---------- Global ---------- */
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #484533; /* exact color from image */
+      background-color: #484533;
       color: #ffffff;
+      overflow-x: hidden;
     }
+
+    /* ---------- Background Animation ---------- */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 30% 30%, #55513d, #3b392a 70%);
+      z-index: -1;
+      animation: bgMove 10s ease-in-out infinite alternate;
+    }
+    @keyframes bgMove {
+      0% { transform: scale(1); filter: brightness(1); }
+      100% { transform: scale(1.05); filter: brightness(1.1); }
+    }
+
+    /* ---------- Header ---------- */
     header {
       background-color: #3b392a;
       padding: 30px 20px;
@@ -20,6 +41,7 @@
     header h1 {
       margin: 0;
       font-size: 2.7rem;
+      letter-spacing: 1px;
     }
     nav {
       margin-top: 15px;
@@ -34,13 +56,15 @@
     nav a:hover {
       color: #b2d235;
     }
+
+    /* ---------- Hero Section ---------- */
     main {
-      padding: 60px 20px;
       text-align: center;
     }
     .hero {
       max-width: 700px;
-      margin: auto;
+      margin: 80px auto;
+      padding: 0 20px;
       animation: fadeInUp 1s ease-in;
     }
     .hero h2 {
@@ -51,20 +75,53 @@
       font-size: 1.1rem;
       line-height: 1.6;
     }
+    .cta-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 25px;
+      background-color: #b2d235;
+      color: #2f2e23;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .cta-btn:hover {
+      background-color: #d5f542;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #b2d235;
+    }
+
+    /* ---------- Sections ---------- */
     .section {
       padding: 60px 20px;
       background-color: #3b392a;
-      animation: fadeInUp 1.2s ease-in;
+      max-width: 900px;
+      margin: 60px auto;
+      border-radius: 12px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .section h3 {
       font-size: 1.8rem;
       margin-bottom: 15px;
+    }
+    .section p {
+      font-size: 1.05rem;
+      line-height: 1.7;
     }
     .section img {
       max-width: 80%;
       margin-top: 20px;
       border-radius: 8px;
     }
+
+    /* ---------- Under Construction ---------- */
     .construction {
       background-color: #2f2e23;
       padding: 60px 20px;
@@ -80,12 +137,16 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+
+    /* ---------- Footer ---------- */
     footer {
       text-align: center;
       padding: 20px;
       background-color: #2f2e23;
       font-size: 0.9rem;
     }
+
+    /* ---------- Animations ---------- */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -107,32 +168,47 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
+
   <main>
     <section class="hero">
       <h2>Converting Waste into Breathable Futures</h2>
       <p>
         Welcome to Chemovik, an initiative focused on developing sustainable biosorbents from industrial and agricultural waste. Our mission: clean air, clean water, cleaner future.
       </p>
+      <a href="#about" class="cta-btn">Explore More</a>
     </section>
+
     <section class="section" id="about">
       <h3>About Chemovik</h3>
-      <p>Chemovik is a student-led science initiative exploring sustainable chemistry-based solutions for real-world problems. Founded with the goal of innovation from waste, it focuses on using biosorption as a purification method. We believe in accessible science, youth-driven ideas, and solving tomorrow’s problems with today’s waste.</p>
+      <p>
+        Chemovik is a student-led science initiative exploring sustainable chemistry-based solutions for real-world problems. Founded with the goal of innovation from waste, it focuses on using biosorption as a purification method. We believe in accessible science, youth-driven ideas, and solving tomorrow’s problems with today’s waste.
+      </p>
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Green_recycling_icon.svg/768px-Green_recycling_icon.svg.png" alt="Recycling Icon" />
     </section>
+
     <section class="section" id="project">
       <h3>What is BioSorb?</h3>
-      <p>BioSorb is a project that turns agricultural and industrial waste into powerful biosorbents — natural materials that can clean water and air by absorbing harmful particles. It's eco-friendly, low-cost, and scalable. We’re currently prototyping small-scale models to demonstrate their efficiency in real environments.</p>
+      <p>
+        BioSorb is a project that turns agricultural and industrial waste into powerful biosorbents — natural materials that can clean water and air by absorbing harmful particles. It's eco-friendly, low-cost, and scalable. We’re currently prototyping small-scale models to demonstrate their efficiency in real environments.
+      </p>
       <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Water_filtering.gif" alt="Water Filtering Animation" />
     </section>
+
     <section class="section" id="certificates">
       <h3>Certificates</h3>
-      <p>From Wix development to project management, our credentials show a wide array of interdisciplinary learning. These certificates back our vision with structured knowledge. (Links and previews coming soon!)</p>
+      <p>
+        From Wix development to project management, our credentials show a wide array of interdisciplinary learning. These certificates back our vision with structured knowledge. (Links and previews coming soon!)
+      </p>
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Certificate_Template.svg/1024px-Certificate_Template.svg.png" alt="Certificate Icon" />
     </section>
+
     <section class="section" id="contact">
       <h3>Contact</h3>
-      <p>Email us at <a href="mailto:chemoviklabs@gmail.com" style="color: #b2d235;">chemoviklabs@gmail.com</a> or follow us on Instagram @chemovik</p>
+      <p>
+        Email us at <a href="mailto:chemoviklabs@gmail.com" style="color: #b2d235;">chemoviklabs@gmail.com</a> or follow us on Instagram @chemovik
+      </p>
     </section>
+
     <section class="construction">
       <svg class="gear" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="10" fill="#fff"/>
@@ -145,8 +221,23 @@
       <p>Come back soon for something awesome!</p>
     </section>
   </main>
+
   <footer>
     <p>&copy; 2025 Chemovik. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Scroll-triggered animation
+    const sections = document.querySelectorAll('.section');
+    const reveal = () => {
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect().top;
+        if (rect < trigger) section.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    reveal();
+  </script>
 </body>
 </html>
