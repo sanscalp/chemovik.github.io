@@ -1,31 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Chemovik</title>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>About — Chemovik</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="fade-in">
-    <h1>Chemovik</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
-      <a href="project.html">BioSorb</a>
-      <a href="certificates.html">Certificates</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+  <header class="header">
+    <div class="container">
+      <div class="brand" onclick="location.href='index.html'">
+        <div class="logo-anim"><img src="assets/logo.svg" alt="logo" /></div>
+        <div><h1>Chemovik</h1></div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="biosorb.html">BioSorb</a>
+        <a href="research.html">Research</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html" class="cta">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="section fade-up">
-    <h2>About Chemovik</h2>
-    <p>Chemovik is a student-led initiative focused on sustainable chemistry and biosorption technologies. Founded by science enthusiasts, we aim to create practical eco-solutions for pollution and waste management.</p>
-    <img src="assets/recycle.png" class="img" alt="Recycling Icon">
+  <main style="padding:60px 20px;">
+    <div class="container" style="max-width:var(--max-w)">
+      <h2>About Chemovik</h2>
+      <div class="mission">
+        <p><strong>Chemovik</strong> started as a student initiative to create practical chemistry-based solutions using waste feedstocks. We test, document, and open-source our findings to help communities adopt low-cost purification systems.</p>
+        <p>We believe in transparent science, reproducible methods, and local empowerment.</p>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <a class="btn" href="research.html">Read Research</a>
+          <a class="btn btn-ghost" href="contact.html">Work with us</a>
+        </div>
+      </div>
+
+      <h3 style="margin-top:30px">Team & Mentors</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px">
+        <div class="card">
+          <h4>Sankalp Dubey</h4><p>Founder & Lead (Chemistry & Product)</p>
+        </div>
+        <div class="card">
+          <h4>Mentor — Dr. X</h4><p>Materials Chemistry</p>
+        </div>
+        <div class="card">
+          <h4>Community Lead</h4><p>Outreach & pilots</p>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Chemovik</p>
+  <footer class="footer">
+    <div class="foot-inner">
+      <div class="small">© 2025 Chemovik</div>
+      <div class="small">Made with ❤️</div>
+    </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
