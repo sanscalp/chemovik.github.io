@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gallery — Chemovik</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="header"><div class="container"><div class="brand" onclick="location.href='index.html'"><div class="logo-anim"><img src="assets/logo.svg" /></div><div><h1>Chemovik</h1></div></div><nav class="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="biosorb.html">BioSorb</a><a href="research.html">Research</a><a href="certificates.html">Certificates</a><a href="contact.html" class="cta">Contact</a></nav></div></header>
+
+<main style="padding:40px 20px;">
+  <div class="container" style="max-width:var(--max-w)">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img data-preview data-src="assets/gallery1.jpg" src="assets/gallery1.jpg" style="width:100%;height:180px;object-fit:cover;border-radius:10px;cursor:pointer"/>
+      <img data-preview data-src="assets/gallery2.jpg" src="assets/gallery2.jpg" style="width:100%;height:180px;object-fit:cover;border-radius:10px;cursor:pointer"/>
+      <img data-preview data-src="assets/gallery1.jpg" src="assets/gallery1.jpg" style="width:100%;height:180px;object-fit:cover;border-radius:10px;cursor:pointer"/>
+      <img data-preview data-src="assets/gallery2.jpg" src="assets/gallery2.jpg" style="width:100%;height:180px;object-fit:cover;border-radius:10px;cursor:pointer"/>
+    </div>
+  </div>
+</main>
+
+<!-- preview modal -->
+<div id="preview" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:1200;opacity:0;pointer-events:none;transition:all .2s">
+  <div style="max-width:900px;width:90%;position:relative">
+    <button id="preview-close" style="position:absolute;right:-8px;top:-8px;background:var(--accent);border:none;padding:8px;border-radius:10px;font-weight:700;cursor:pointer">X</button>
+    <img src="" alt="preview" style="width:100%;border-radius:12px;display:block;"/>
+  </div>
+</div>
+
+<footer class="footer"><div class="foot-inner"><div class="small">© 2025 Chemovik</div><div class="small">Images: community & lab</div></div></footer>
+<script src="script.js"></script>
+</body>
+</html>
