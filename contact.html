@@ -1,31 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Chemovik</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact — Chemovik</title><link rel="stylesheet" href="style.css"></head>
 <body>
-  <header class="fade-in">
-    <h1>Chemovik</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="project.html">BioSorb</a>
-      <a href="certificates.html">Certificates</a>
-      <a href="contact.html" class="active">Contact</a>
-    </nav>
-  </header>
+<header class="header"><div class="container"><div class="brand" onclick="location.href='index.html'"><div class="logo-anim"><img src="assets/logo.svg" /></div><div><h1>Chemovik</h1></div></div><nav class="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="biosorb.html">BioSorb</a><a href="research.html">Research</a><a href="certificates.html">Certificates</a><a href="gallery.html">Gallery</a><a href="contact.html" class="cta">Contact</a></nav></div></header>
 
-  <main class="section fade-up">
-    <h2>Contact Us</h2>
-    <p>Email us at <a href="mailto:chemoviklabs@gmail.com" class="link">chemoviklabs@gmail.com</a></p>
-    <p>Follow us on Instagram: <span class="highlight">@chemovik</span></p>
-  </main>
+<main style="padding:50px 20px;">
+  <div class="container" style="max-width:700px">
+    <h2>Contact</h2>
+    <div class="card">
+      <p>Email us at <a href="mailto:chemoviklabs@gmail.com" style="color:var(--accent)">chemoviklabs@gmail.com</a></p>
+      <p>Or use this quick contact (client-side only — opens email):</p>
+      <form action="mailto:chemoviklabs@gmail.com" method="GET" enctype="text/plain" style="display:flex;flex-direction:column;gap:10px">
+        <input name="subject" placeholder="Subject" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff"/>
+        <textarea name="body" rows="6" placeholder="Message" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff"></textarea>
+        <button class="btn" type="submit">Send Email</button>
+      </form>
+      <p style="margin-top:8px;color:rgba(255,255,255,0.7)">Prefer WhatsApp/Instagram? Add links here.</p>
+    </div>
+  </div>
+</main>
 
-  <footer>
-    <p>&copy; 2025 Chemovik</p>
-  </footer>
+<footer class="footer"><div class="foot-inner"><div class="small">© 2025 Chemovik</div><div class="small">Thanks for connecting</div></div></footer>
+<script src="script.js"></script>
 </body>
 </html>
